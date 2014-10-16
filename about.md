@@ -4,27 +4,15 @@ title: About
 ---
 
 <p class="message">
-  Hey there! This page is included as an example. Feel free to customize it for your own use upon downloading. Carry on!
+  Ahoy! My name is Marc and I am an engineering student from France. This place is where I write stuff about my daily geek reveries.
 </p>
 
-In the novel, *The Strange Case of Dr. Jeykll and Mr. Hyde*, Mr. Poole is Dr. Jekyll's virtuous and loyal butler. Similarly, Poole is an upstanding and effective butler that helps you build Jekyll themes. It's made by [@mdo](https://twitter.com/mdo).
+I have always loved learning/sharing about software and web development using websites like the [Stack Exchange](http://stackexchange.com/) family, [GitHub](http://github.com) and various other personnal or business blogs.
 
-There are currently two themes built on Poole:
+I am currently working as a [Grails](https://grails.org/) developer for a french startup named [kazaden](http://kazaden.com/), and I love words like **ElasticSearch**, **Amazon Web Services**, or **Linux**.
 
-* [Hyde](http://hyde.getpoole.com)
-* [Lanyon](http://lanyon.getpoole.com)
+When I'm not busy trying to get my old laptop to compile and run my projects, I like to go out and take [pictures](https://www.flickr.com/photos/marcduboucheron/), print them in my darkroom or read cool photography books. I also like enjoying a beer in front of a rugby game (Go [Clermont](http://www.asm-rugby.com/)) and listening to cool music.
 
-Learn more and contribute on [GitHub](https://github.com/poole).
+Feel free to [contact me on twitter](http://twitter.com/MonsieurCelsius) if you want to chat about dev things and/or have a beer!
 
-## Setup
-
-Some fun facts about the setup of this project include:
-
-* Built for [Jekyll](http://jekyllrb.com)
-* Developed on GitHub and hosted for free on [GitHub Pages](https://pages.github.com)
-* Coded with [Sublime Text 2](http://sublimetext.com), an amazing code editor
-* Designed and developed while listening to music like [Blood Bros Trilogy](https://soundcloud.com/maddecent/sets/blood-bros-series)
-
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/poole/issues/new) or [ask me on Twitter](https://twitter.com/mdo).
-
-Thanks for reading!
+This site was built using [@mdo](http://twitter.com/mdo)'s  [Lanyon](https://github.com/poole/lanyon) and is hosted on [GitHub Pages](https://pages.github.com/). No kittens were harmed during development.

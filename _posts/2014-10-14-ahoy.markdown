@@ -1,0 +1,16 @@
+---
+layout: post
+title: "Hello"
+date: "2014-10-14"
+---
+
+<p class="message">This is the first post ever on this blog. I'll try to describe as clearly as I can what I will post here.</p>
+
+#### Hey there
+Glad you got here!
+
+This is my first post ever on this website, it's not much, I just came by to say hello.
+
+I'll be writing things here as often as I can about what I do daily, both at work and at home.
+
+In the meantime, feel free to tweet to me [@MonsieurCelsius](http://twitter.com/MonsieurCelsius) or head over to the [about](/about) page where you can read a little about who I am.
