@@ -6,11 +6,13 @@ layout: nil
 {% include {{ site.baseurl }}public/css/syntax.css %}
 {% include {{ site.baseurl }}public/css/lanyon.css %}
 
+/*Center post images horizontally */
 .post img{
 	margin-left:auto;
 	margin-right:auto;
 }
 
+/* Center .description and color them in dark grey */
 .post .description{
 	text-align:center;
 	color:#9a9a9a;
