@@ -1,0 +1,17 @@
+---
+layout: nil
+---
+
+{% include {{ site.baseurl }}public/css/poole.css %}
+{% include {{ site.baseurl }}public/css/syntax.css %}
+{% include {{ site.baseurl }}public/css/lanyon.css %}
+
+.post img{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.post .description{
+	text-align:center;
+	color:#9a9a9a;
+}

@@ -2,7 +2,7 @@
 layout: post
 title: A little something about anchors without href
 published: True
-categories: [HMTL, CSS]
+categories: [HMTL]
 tags: [HTML, CSS, a, href, cursor]
 ---
 
@@ -10,7 +10,7 @@ tags: [HTML, CSS, a, href, cursor]
 	Today, I spent quite some time wondering why an anchor element on my page didn't have the correct cursor property. This quick post explains why.
 </p>
 
-# The right way to use `a`
+## The right way to use `a`
 
 All web developers have already used anchor (`a`) elements without specifying the value of the `href` attribute. Often, we want to have a link that opens a modal box or fires an ajax call. We want it to look like a link but not to trigger a redirection.
 
