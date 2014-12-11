@@ -1,6 +1,6 @@
 ---
 layout: post
-title: merging Lanyon's stylesheets with your own
+title: Merging Lanyon's stylesheets with your own
 published: True
 categories: []
 tags: []
