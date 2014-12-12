@@ -1,9 +1,11 @@
 ---
 layout: post
-title: Modifying the bootstrap dropdown on scroll
+title: Modifying the Bootstrap dropdown on scroll
 published: True
 categories: [Tutorial, Bootstrap]
 tags: [HTML, CSS, JS, Bootstrap]
+date: "2014-10-28"
+description: "Make the Bootstrap dropdown change it's opening direction on scroll"
 ---
 
 <p class="message">
@@ -12,7 +14,7 @@ tags: [HTML, CSS, JS, Bootstrap]
 
 ## Problem overview
 
-The idea here is to get the bootstrap [dropdown](http://getbootstrap.com/components/#dropdowns) component to have a more user friendly way of opening when it is displayed at the bottom of a page. If the dropdown is in the lower part of the page, it is a bit painful for the user to have to scroll down to see the menu items.
+The idea here is to get the Bootstrap [dropdown](http://getbootstrap.com/components/#dropdowns) component to have a more user friendly way of opening when it is displayed at the bottom of a page. If the dropdown is in the lower part of the page, it is a bit painful for the user to have to scroll down to see the menu items.
 
 <iframe width="100%" height="300" src="http://jsfiddle.net/SirCelsius/2uyh4j3w/12/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 <p class="description">This is not cool, Bootstrap!</p>

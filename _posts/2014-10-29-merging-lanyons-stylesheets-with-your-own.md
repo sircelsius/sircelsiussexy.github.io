@@ -2,8 +2,10 @@
 layout: post
 title: Merging Lanyon's stylesheets with your own
 published: True
-categories: []
-tags: []
+categories: [Code]
+tags: [jekyll]
+date: "2014-10-29"
+description: "Customize your Lanyon styles and merge the files into one"
 ---
 
 

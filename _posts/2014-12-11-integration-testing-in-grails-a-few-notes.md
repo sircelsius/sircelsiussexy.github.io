@@ -4,6 +4,8 @@ title: Integration Testing in Grails - A few notes
 categories: [Code, Grails]
 tags: [Integration, Testing]
 published: True
+date: "2014-12-11"
+description: "Grails Integration Tests snippets and best practices"
 ---
 
 <p class="message">Writing integration tests is sometimes pretty repetitive, especially if you have many domains that have custom CRUD methods. Here are a few snippets that I have found useful when creating <em>integration tests</em>.</p>
