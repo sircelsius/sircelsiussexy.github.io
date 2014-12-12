@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+ <title>Ali Connors</title>
+ <link href="http://aliconnors.me/atom.xml" rel="self"/>
+ <link href="http://aliconnors.me/"/>
+ <updated>2014-12-12T15:18:04+01:00</updated>
+ <id>http://aliconnors.me</id>
+ <author>
+   <name>Marc Bramaud du Boucheron</name>
+   <email>m.duboucheron@gmail.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>Integration Testing in Grails - A few notes</title>
+   <link href="http://aliconnors.me/code/grails/2014/12/11/integration-testing-in-grails-a-few-notes/"/>
+   <updated>2014-12-11T00:00:00+01:00</updated>
+   <id>http://aliconnors.me/code/grails/2014/12/11/integration-testing-in-grails-a-few-notes</id>
+   <content type="html">&lt;p class=&quot;message&quot;&gt;Writing integration tests is sometimes pretty repetitive, especially if you have many domains that have custom CRUD methods. Here are a few snippets that I have found useful when creating &lt;em&gt;integration tests&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;These snippets will evolve with time, as I write more and more tests.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2&gt;Lists&lt;/h2&gt;
+
+&lt;h3&gt;size&lt;/h3&gt;
+
+&lt;p&gt;This requires a bit of logic to understand, but the idea is to verify that the list size is the minimum between the maximum size (set in &lt;code&gt;params&lt;/code&gt; or as a default value) and the total number of domain objects &lt;em&gt;minus&lt;/em&gt; the offset parameter (if it exists).&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;modelAndView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;domainList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Math&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;min&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;offset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;max&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;max&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p class=&quot;description&quot;&gt;Verify the list size, no matter what the offset or max, no matter what the number of domain objects&lt;/p&gt;
+
+&lt;h3&gt;id sorting&lt;/h3&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// Check that the list is sorted by id if it isn&amp;#39;t empty&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// This all seems a bit complicated but it is necessary as it is totally&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// independant of the number of Domain that currently exist&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;domain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;modelAndView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;domainList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;modelAndView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;domainList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++){&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;//  Setting the id of the Domain to get&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;offset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;offset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Getting the domain, failing if it doesn&amp;#39;t exist&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;domain&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;fail&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Invalid domain object&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;modelAndView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;domainList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;domain&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p class=&quot;description&quot;&gt;This also works whatever the offset, max or number of domain objects. How cool is that?&lt;/p&gt;
+
+&lt;p&gt;This might seem a bit overkill upon reading it for the first time, but as it turns out, when testing large applications that have many dependencies between their different domains, with tests for domain &lt;code&gt;A&lt;/code&gt; calling CRUD methods on domain &lt;code&gt;B&lt;/code&gt; objects, being able to test domain &lt;code&gt;B&lt;/code&gt; without knowing the &lt;em&gt;actual&lt;/em&gt; number of objects that exist is paramount. There&amp;#39;s nothing more annoying than writing a test that does something like the following and having to refactor it every day because some other test has added or removed objects:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;modelAndView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;model&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;domainList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p class=&quot;description&quot;&gt;The meh test case that is sure to break&lt;/p&gt;
+
+&lt;h2&gt;i18n messages&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;This assumes that your messages are present in your &lt;code&gt;message_fr.properties&lt;/code&gt;. It doesn&amp;#39;t have to be french though, I&amp;#39;ll allow it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The testing process is separated in two parts: &lt;strong&gt;setting the request locale&lt;/strong&gt; so that the tested method knows which message it should get, and &lt;strong&gt;testing the returned message&lt;/strong&gt; to make sure that the method gets the correct value.&lt;/p&gt;
+
+&lt;h3&gt;Setting the request locale&lt;/h3&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Setting the locale can be done either globally for the entire test class or locally for a single method. Although I generally try to set my parameters locally, messages aren&amp;#39;t &lt;em&gt;that&lt;/em&gt; important, so I go with the first option&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;c1&quot;&gt;// the messageSource service needs to be injected&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messageSource&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setUp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addPreferredLocale&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Locale&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;fr&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p class=&quot;description&quot;&gt;Set the request locale for the whole test class. Easy.&lt;/p&gt;
+
+&lt;h3&gt;Testing the returned messages&lt;/h3&gt;
+
+&lt;p&gt;Supposing you are testing a controller that render an i18n message in &lt;code&gt;flash.message&lt;/code&gt;, you can test the message value the following way:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;flash&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;message&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;messageSource&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;your.message.label&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;your&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getLocale&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p class=&quot;description&quot;&gt;Get a message in an integration test class&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s cut that line in smaller pieces so as to better understand it.&lt;/p&gt;
+
+&lt;p&gt;We are calling the &lt;code&gt;org.springframework.context.messageSource.getMessage(String code, Object[] args, Locale locale)&lt;/code&gt; (javadoc &lt;a href=&quot;http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/MessageSource.html#getMessage-java.lang.String-java.lang.Object:A-java.util.Locale-&quot;&gt;here&lt;/a&gt;) method. The docs are pretty clear as to what this method does:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Try to resolve the message. Treat as an error if the message can&amp;#39;t be found.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p class=&quot;description&quot;&gt;Ok Spring, I get it.&lt;/p&gt;
+
+&lt;p&gt;The arguments we are passing to this method are the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Your message&amp;#39;s code. &lt;em&gt;Meh&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Your message arguments, &lt;code&gt;as Object[]&lt;/code&gt;. The casting is important here, or else you&amp;#39;ll get nasty &lt;code&gt;groovy.lang.MissingMethodException&lt;/code&gt; messages when running your tests, and they will fail. If the message you are testing doesn&amp;#39;t take any argument, just go full badass style and set that to &lt;code&gt;null&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Your &lt;code&gt;controller.request&lt;/code&gt;&amp;#39;s &lt;code&gt;Locale&lt;/code&gt; which we set earlier. Just like for the arguments, if you feel like testing the default &lt;code&gt;Locale&lt;/code&gt;, set this to &lt;code&gt;null&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This pretty cool snippet was originally given as an &lt;a href=&quot;http://stackoverflow.com/a/27190531/3465375&quot;&gt;answer&lt;/a&gt; to one of my questions on stackoverflow. I have been using it ever since. Very love. Many useful. Wow. &lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Mac OS X case sensitivity and git</title>
+   <link href="http://aliconnors.me/git/2014/12/10/mac-os-x-case-senitivity-and-git/"/>
+   <updated>2014-12-10T00:00:00+01:00</updated>
+   <id>http://aliconnors.me/git/2014/12/10/mac-os-x-case-senitivity-and-git</id>
+   <content type="html">&lt;p class=&quot;message&quot;&gt;I love my new macbook. Just about as much as I hate it.&lt;/p&gt;
+
+&lt;p&gt;I recently bought a Macbook Pro because I had grown tired of my almost three years old and shitty - because I used it a lot, not because it was in the first place - HP Elitebook. I had been thinking about it for a while and I must say I am qui impressed. It is light and quick but most of all I love the fact that I found a *nix like terminal and general file structure. It feels right at home! I&amp;#39;ll still install fedora soon enough because I can, but hey, it&amp;#39;s been a week and I still haven&amp;#39;t, who would have thought?&lt;/p&gt;
+
+&lt;p&gt;There is one thing that made me really mad though: the case insensitivity of the &lt;a href=&quot;http://en.wikipedia.org/wiki/Hierarchical_File_System&quot;&gt;HFS+ File System&lt;/a&gt;. I mean seriously, where the fuck does that come from anyway? Why would anyone want that? The regular users wouldn&amp;#39;t notice anything if it were different, and the more advanced users would never have problems similar to what I&amp;#39;ll describe below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;public/img/wtf.jpg&quot; alt=&quot;Seriously Apple?&quot;&gt;&lt;/p&gt;
+
+&lt;h2&gt;The git problem&lt;/h2&gt;
+
+&lt;p&gt;Sometimes, because of that case insensitivity, versioning systems - meaning git - get messed up pretty badly. &lt;/p&gt;
+
+&lt;p&gt;What happened to me was pretty insanely time consuming and enraging. Let&amp;#39;s assume my git repo was in the following state:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I had a file named &lt;code&gt;Foo.jpg&lt;/code&gt; in my project, and I was working on branch &lt;code&gt;A&lt;/code&gt;. The &lt;code&gt;Foo.jpg&lt;/code&gt; file was not really my concern as it was an older file I had taken from the &lt;code&gt;master&lt;/code&gt; branch earlier.&lt;/li&gt;
+&lt;li&gt;My coworker was working on branch &lt;code&gt;B&lt;/code&gt;. He &lt;em&gt;deleted&lt;/em&gt; &lt;code&gt;Foo.jpg&lt;/code&gt; and created a new file in the same location named &lt;code&gt;foo.jpg&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;All my changes on branch &lt;code&gt;A&lt;/code&gt; were commited, running &lt;code&gt;git status&lt;/code&gt; showed me no changed files.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;However, whenever I tried to run &lt;code&gt;git checkout B&lt;/code&gt;, the command failed with the following output:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;error: The following untracked working tree files would be overwritten by checkout:
+    foo.bar
+Please move or remove them before you can switch branches.
+Aborting
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;What this message means is that when git tried to put the &lt;code&gt;foo.jpg&lt;/code&gt; file from the &lt;code&gt;B&lt;/code&gt; branch in my file system, it found that the file already existed in the working tree under &lt;code&gt;Foo.jpg&lt;/code&gt; - because for the OSX File System, they are the same files - although it had not been added to the tracked files - because for git, &lt;code&gt;Foo.jpg&lt;/code&gt; is not the same thing as &lt;code&gt;foo.jpg&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;At this point, you&amp;#39;re probably thinking something similar to what I thought at the time this first happened to me:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;public/img/wtf2.jpg&quot; alt=&quot;I have no idea what&#39;s happening&quot;&gt;
+&lt;p class=&quot;description&quot;&gt;wtf OSX?&lt;/p&gt;&lt;/p&gt;
+
+&lt;h2&gt;The non solution&lt;/h2&gt;
+
+&lt;p&gt;I started derping around on the internets to find out how to solve that problem. I found a &lt;a href=&quot;http://stackoverflow.com/questions/4858047/git-error-the-following-untracked-working-tree-files-would-be-overwritten-by-ch&quot;&gt;lot&lt;/a&gt; &lt;a href=&quot;http://stackoverflow.com/a/14283695/3465375&quot;&gt;of&lt;/a&gt; &lt;a href=&quot;http://stackoverflow.com/a/23960663/3465375&quot;&gt;things&lt;/a&gt; on stackoverflow that try to explain the problem and give different workarounds.&lt;/p&gt;
+
+&lt;p&gt;It seems the accepted solution to this known problem is to set the git &lt;code&gt;ignorecase&lt;/code&gt; option to &lt;code&gt;true&lt;/code&gt;. Once again, I don&amp;#39;t believe this is a &lt;em&gt;good&lt;/em&gt; solution, or even a &lt;em&gt;solution&lt;/em&gt;. I don&amp;#39;t want my git to ignore case. I don&amp;#39;t want it to consider &lt;code&gt;Foo.jpg&lt;/code&gt; the same as &lt;code&gt;foo.jpg&lt;/code&gt;. What if one day I decide I want to keep both files?&lt;/p&gt;
+
+&lt;p&gt;Another way of working around the problem that I found was to use a combination of &lt;code&gt;git mv&lt;/code&gt; commands to rename the files letting git know they were changed. While this is a &lt;em&gt;more acceptable&lt;/em&gt; solution, it doesn&amp;#39;t answer my needs. I want this problem to &lt;em&gt;not happen anymore&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;At the moment I am considering creating a partition on my hard drive to store my git projects - but of course Yosemite makes it hard to shrink the current partition I have in order to create a new one. So much for the out of the box experience. &lt;/p&gt;
+
+&lt;p&gt;I hate my Mac.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Merging Lanyon's stylesheets with your own</title>
+   <link href="http://aliconnors.me/code/2014/10/29/merging-lanyons-stylesheets-with-your-own/"/>
+   <updated>2014-10-29T00:00:00+01:00</updated>
+   <id>http://aliconnors.me/code/2014/10/29/merging-lanyons-stylesheets-with-your-own</id>
+   <content type="html">&lt;p class=&quot;message&quot;&gt;
+    &lt;a href=&quot;http://twitter.com/mdo&quot;&gt;mdo&lt;/a&gt;&#39;s Lanyon theme for Jekyll is pretty swell. It has a good design and is dead simple to use.
+    I recently wanted to add a bit of custom styling and merge my new stylesheet with the existing ones. Here&#39;s how I did that.
+&lt;/p&gt;
+
+&lt;h2&gt;Lanyon&amp;#39;s existing style&lt;/h2&gt;
+
+&lt;p&gt;Out of the box, Lanyon provides three different stylesheets:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;poole.css&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;syntax.css&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lanyon.css&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These contain the different styles for headers, code blocks, sidebars and the likes, and are included in the &lt;code&gt;_includes/head.html&lt;/code&gt; file in the following order:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/public/css/poole.css&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/public/css/syntax.css&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/public/css/lanyon.css&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;What I changed&lt;/h2&gt;
+
+&lt;p&gt;What I wanted to do was merge all the files in one single &lt;code&gt;aliconnors.css&lt;/code&gt; file (to reduce the number of http requests while being able to keep the original files).&lt;/p&gt;
+
+&lt;p&gt;Although the right way to go would be to use a css minifier, I intend to change my workflow soon to use Sass, so I didn&amp;#39;t want to change things too much.&lt;/p&gt;
+
+&lt;p&gt;I ended up creating a CSS file which contains my custom rules and includes the original CSS using Front Matter:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;nil&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;---&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;baseurl&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;css&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;poole&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.css&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;baseurl&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;css&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;syntax&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.css&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;{{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;baseurl&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;public&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;css&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;lanyon&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;.css&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;
+
+
+&lt;span class=&quot;o&quot;&gt;//&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;below&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;are&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;my&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;custom&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;rules&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;/*Center post images horizontally */&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.post&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;img&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;margin-left&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;margin-right&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;/* Center .description and color them in dark grey */&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;.post&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;.description&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;text-align&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;center&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;#9a9a9a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p class=&quot;description&quot;&gt;Front Matter includes in my CSS&lt;/p&gt;
+
+&lt;p&gt;This merges all four files into one. After that, I simply updated my &lt;code&gt;head.html&lt;/code&gt; to include the correct file.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;rel=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;stylesheet&amp;quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;/public/css/aliconnors.css&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;What&amp;#39;s next?&lt;/h2&gt;
+
+&lt;p&gt;I&amp;#39;ll be doing bigger, more radical changes on my workflow soon. I&amp;#39;ll try to post explanations for them here.&lt;/p&gt;
+
+&lt;h3&gt;Bonus&lt;/h3&gt;
+
+&lt;p&gt;I escaped the &lt;code&gt;liquid&lt;/code&gt; tags in the code samples above using the &lt;code&gt;raw&lt;/code&gt; and &lt;code&gt;endraw&lt;/code&gt; tags, as described in  &lt;a href=&quot;http://stackoverflow.com/a/5866429/3465375&quot;&gt;this stackoverflow answer&lt;/a&gt;.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Modifying the Bootstrap dropdown on scroll</title>
+   <link href="http://aliconnors.me/tutorial/bootstrap/2014/10/28/modifying-the-bootstrap-dropdown-on-scroll/"/>
+   <updated>2014-10-28T00:00:00+01:00</updated>
+   <id>http://aliconnors.me/tutorial/bootstrap/2014/10/28/modifying-the-bootstrap-dropdown-on-scroll</id>
+   <content type="html">&lt;p class=&quot;message&quot;&gt;
+    I recently answered a &lt;a href=&quot;http://stackoverflow.com/a/26590613/3465375&quot;&gt;Stackoverflow question&lt;/a&gt; about getting a dropdown menu to change the direction in which it opens depending on its position in the window. Here&#39;s a little explanation about how I got things to work.
+&lt;/p&gt;
+
+&lt;h2&gt;Problem overview&lt;/h2&gt;
+
+&lt;p&gt;The idea here is to get the Bootstrap &lt;a href=&quot;http://getbootstrap.com/components/#dropdowns&quot;&gt;dropdown&lt;/a&gt; component to have a more user friendly way of opening when it is displayed at the bottom of a page. If the dropdown is in the lower part of the page, it is a bit painful for the user to have to scroll down to see the menu items.&lt;/p&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;http://jsfiddle.net/SirCelsius/2uyh4j3w/12/embedded/&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+&lt;p class=&quot;description&quot;&gt;This is not cool, Bootstrap!&lt;/p&gt;
+
+&lt;p&gt;The person who asked the question wanted to be able to change the way the dropdown opens depending on its position in the window. If the dropdown wa below the vertical center of the window, it had to be opened upwards, otherwise downwards.&lt;/p&gt;
+
+&lt;h2&gt;Final result&lt;/h2&gt;
+
+&lt;p&gt;I made two iterations of the dropdown: the first changes dynamically when the user scrolls:&lt;/p&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;http://jsfiddle.net/SirCelsius/2uyh4j3w/10/embedded/&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+&lt;p class=&quot;description&quot;&gt;The magic happens when scrolling&lt;/p&gt;
+
+&lt;p&gt;The second - which I personally find less intrusive for the user - does not change states while it is open, but calculates it&amp;#39;s most efficient state before opening:&lt;/p&gt;
+
+&lt;iframe width=&quot;100%&quot; height=&quot;300&quot; src=&quot;http://jsfiddle.net/SirCelsius/2uyh4j3w/11/embedded/&quot; allowfullscreen=&quot;allowfullscreen&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;
+
+&lt;p class=&quot;description&quot;&gt;The magic opens when opening the dropdown&lt;/p&gt;
+
+&lt;h2&gt;Explanation&lt;/h2&gt;
+
+&lt;p&gt;Both answers calculate a value that I named &lt;code&gt;relativeOffset&lt;/code&gt; which is the offset between the top of the window - not the top of the page - and the dropdown toggle. By comparing this to the window height, we can know whether the dropdown is in the upper or lower part of what&amp;#39;s visible in the window.&lt;/p&gt;
+
+&lt;p&gt;All we have to do is listen to the right event - &lt;code&gt;$(window).scroll&lt;/code&gt; for the first solution, &lt;code&gt;$(&amp;#39;.dropdown-toggle&amp;#39;).click&lt;/code&gt; for the second - and toggle the &lt;code&gt;reverse&lt;/code&gt; style if we want to.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#39;s the code for the &lt;code&gt;reverse&lt;/code&gt; class:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.reverse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;auto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;bottom&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;100%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And here&amp;#39;s the javascript for the second iteration:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;.dropdown-toggle&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// get the scollTop (distance scrolled from top)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;scrollTop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scrollTop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// get the top offset of the dropdown (distance from top of the page)&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;topOffset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;.dropdown&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;offset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// calculate the dropdown offset relative to window position&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;relativeOffset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;topOffset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;scrollTop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// get the window height&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;windowHeight&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// if the relative offset is greater than half the window height,&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// reverse the dropdown.&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;relativeOffset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;windowHeight&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;.dropdown-menu&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;addClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;reverse&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;.dropdown-menu&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;removeClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;reverse&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>A little something about anchors without href</title>
+   <link href="http://aliconnors.me/hmtl/2014/10/28/a-little-something-about-anchors-without-href/"/>
+   <updated>2014-10-28T00:00:00+01:00</updated>
+   <id>http://aliconnors.me/hmtl/2014/10/28/a-little-something-about-anchors-without-href</id>
+   <content type="html">&lt;p class=&quot;message&quot;&gt;
+    Today, I spent quite some time wondering why an anchor element on my page didn&#39;t have the correct cursor property. This quick post explains why.
+&lt;/p&gt;
+
+&lt;h2&gt;The right way to use &lt;code&gt;a&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;All web developers have already used anchor (&lt;code&gt;a&lt;/code&gt;) elements without specifying the value of the &lt;code&gt;href&lt;/code&gt; attribute. Often, we want to have a link that opens a modal box or fires an ajax call. We want it to look like a link but not to trigger a redirection.&lt;/p&gt;
+
+&lt;p&gt;Historically, this was possible using either one of the following methods:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;#&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Click me I&amp;#39;m a link&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;javascript:void(0)&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Click me I&amp;#39;m a link&lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The difference between these two methods being that the latter will not scroll the page whereas the first method will bring you back to the top. See this &lt;a href=&quot;http://jsfiddle.net/SirCelsius/fpcmkgfL/&quot;&gt;fiddle&lt;/a&gt; for an example.&lt;/p&gt;
+
+&lt;p&gt;The HTML5 specification changed that by making the &lt;code&gt;href&lt;/code&gt; attribute optional. You may now create &lt;a href=&quot;http://www.w3.org/TR/html-markup/a.html#placeholder-hyperlink&quot;&gt;placeholder hyperlinks&lt;/a&gt; that will be links, but will not trigger a redirection. And you can still do fancy stuff with them if you want to.&lt;/p&gt;
+
+&lt;h2&gt;There is a slight problem&lt;/h2&gt;
+
+&lt;p&gt;If there weren&amp;#39;t any problems, things would be too perfect to be true and us lowly devs would end up being useless.&lt;/p&gt;
+
+&lt;p&gt;If you create a placehoder link in your website, the &lt;code&gt;cursor&lt;/code&gt; property will not always be set to &lt;code&gt;pointer&lt;/code&gt; as it should. As a matter of fact some browsers will style that as a simple text element. See this &lt;a href=&quot;http://jsfiddle.net/SirCelsius/9vrdq6ca/2/&quot;&gt;fiddle&lt;/a&gt; for an example.&lt;/p&gt;
+
+&lt;p&gt;In the end, you&amp;#39;re better off using the good old &lt;code&gt;javascript:void(0)&lt;/code&gt; method!&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Hello</title>
+   <link href="http://aliconnors.me/2014/10/14/ahoy/"/>
+   <updated>2014-10-14T00:00:00+02:00</updated>
+   <id>http://aliconnors.me/2014/10/14/ahoy</id>
+   <content type="html">&lt;p class=&quot;message&quot;&gt;This is the first post ever on this blog. I&#39;ll try to describe as clearly as I can what I will post here.&lt;/p&gt;
+
+&lt;h4&gt;Hey there&lt;/h4&gt;
+
+&lt;p&gt;Glad you got here!&lt;/p&gt;
+
+&lt;p&gt;This is my first post ever on this website, it&amp;#39;s not much, I just came by to say hello.&lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;ll be writing things here as often as I can about what I do daily, both at work and at home.&lt;/p&gt;
+
+&lt;p&gt;In the meantime, feel free to tweet to me &lt;a href=&quot;http://twitter.com/MonsieurCelsius&quot;&gt;@MonsieurCelsius&lt;/a&gt; or head over to the &lt;a href=&quot;/about&quot;&gt;about&lt;/a&gt; page where you can read a little about who I am.&lt;/p&gt;
+</content>
+ </entry>
+ 
+
+</feed>
