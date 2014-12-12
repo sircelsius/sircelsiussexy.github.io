@@ -28,3 +28,7 @@ metadescription:     'A software and web development blog. By Marc du Boucheron'
 
 # Social vars
 github.home:        'https://github.com/sircelsiussexy'
+
+# Disable github building
+include:
+  - .nojekyll
