@@ -1,5 +1,4 @@
 ---
-layout: nil
 ---
 
 {% include {{ site.baseurl }}public/css/poole.css %}
@@ -8,12 +7,12 @@ layout: nil
 
 /*Center post images horizontally */
 .post img{
-	margin-left:auto;
-	margin-right:auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 /* Center .description and color them in dark grey */
 .post .description{
-	text-align:center;
-	color:#9a9a9a;
+	text-align: center;
+	color: #9a9a9a;
 }
