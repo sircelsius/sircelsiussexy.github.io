@@ -3,7 +3,7 @@ layout: post
 title: Mac OS X case sensitivity and git
 published: True
 categories: [git]
-tags: [Code, git, rage, ignorecase]
+tags: [Code, git, rage, ignorecase, osx]
 ---
 
 <p class="message">I love my new macbook. Just about as much as I hate it.</p>
