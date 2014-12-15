@@ -1,6 +1,0 @@
-{"index":{"_id":"1"}}
-{"username":"celsius", "comment" : [{"title" : "test 1 ", "content": "this is test 1"},{"title" : "test 2 ", "content": "this is test 2"}, {"title" : "test 3 ", "content": "this is test 3"}] }
-{"index":{"_id":"2"}}
-{"username":"foo", "comment" : [{"title" : "foo 1 ", "content": "this is foo 1"},{"title" : "foo 2 ", "content": "this is foo 2"}] }
-{"index":{"_id":"3"}}
-{"username":"bar", "comment" : [{"title" : "bar 1 ", "content": "this is bar 1"}]}
