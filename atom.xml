@@ -4,13 +4,22 @@
  <title>Ali Connors</title>
  <link href="http://aliconnors.me/atom.xml" rel="self"/>
  <link href="http://aliconnors.me/"/>
- <updated>2014-12-12T15:18:04+01:00</updated>
+ <updated>2014-12-14T19:44:18+01:00</updated>
  <id>http://aliconnors.me</id>
  <author>
    <name>Marc Bramaud du Boucheron</name>
    <email>m.duboucheron@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>test grunt</title>
+   <link href="http://aliconnors.me/2014/12/14/test-grunt/"/>
+   <updated>2014-12-14T00:00:00+01:00</updated>
+   <id>http://aliconnors.me/2014/12/14/test-grunt</id>
+   <content type="html">&lt;p class=&quot;message&quot;&gt;Salut les copinous&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Integration Testing in Grails - A few notes</title>
