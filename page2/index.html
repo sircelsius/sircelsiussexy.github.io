@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <!-- Analytics meta-tags -->
+  
+    <meta name="description" content="A software and web development blog. By Marc du Boucheron" />
+  
+
+  
+
+  <title>
+    
+      Ali Connors &middot; Geek reveries
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/aliconnors.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>A place where things about software and web development are written. By <a href="http://twitter.com/MonsieurCelsius">Sir Celsius</a></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+    
+      
+        
+      
+    
+      
+    
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2014. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Ali Connors</a>
+            <small>Geek reveries</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/tutorial/bootstrap/2014/10/28/modifying-the-bootstrap-dropdown-on-scroll/">
+        Modifying the Bootstrap dropdown on scroll
+      </a>
+    </h1>
+
+    <span class="post-date">28 Oct 2014</span>
+
+    <p class="message">
+    I recently answered a <a href="http://stackoverflow.com/a/26590613/3465375">Stackoverflow question</a> about getting a dropdown menu to change the direction in which it opens depending on its position in the window. Here's a little explanation about how I got things to work.
+</p>
+
+<h2>Problem overview</h2>
+
+<p>The idea here is to get the Bootstrap <a href="http://getbootstrap.com/components/#dropdowns">dropdown</a> component to have a more user friendly way of opening when it is displayed at the bottom of a page. If the dropdown is in the lower part of the page, it is a bit painful for the user to have to scroll down to see the menu items.</p>
+
+<iframe width="100%" height="300" src="http://jsfiddle.net/SirCelsius/2uyh4j3w/12/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p class="description">This is not cool, Bootstrap!</p>
+
+<p>The person who asked the question wanted to be able to change the way the dropdown opens depending on its position in the window. If the dropdown wa below the vertical center of the window, it had to be opened upwards, otherwise downwards.</p>
+
+<h2>Final result</h2>
+
+<p>I made two iterations of the dropdown: the first changes dynamically when the user scrolls:</p>
+
+<iframe width="100%" height="300" src="http://jsfiddle.net/SirCelsius/2uyh4j3w/10/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p class="description">The magic happens when scrolling</p>
+
+<p>The second - which I personally find less intrusive for the user - does not change states while it is open, but calculates it&#39;s most efficient state before opening:</p>
+
+<iframe width="100%" height="300" src="http://jsfiddle.net/SirCelsius/2uyh4j3w/11/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<p class="description">The magic opens when opening the dropdown</p>
+
+<h2>Explanation</h2>
+
+<p>Both answers calculate a value that I named <code>relativeOffset</code> which is the offset between the top of the window - not the top of the page - and the dropdown toggle. By comparing this to the window height, we can know whether the dropdown is in the upper or lower part of what&#39;s visible in the window.</p>
+
+<p>All we have to do is listen to the right event - <code>$(window).scroll</code> for the first solution, <code>$(&#39;.dropdown-toggle&#39;).click</code> for the second - and toggle the <code>reverse</code> style if we want to.</p>
+
+<p>Here&#39;s the code for the <code>reverse</code> class:</p>
+<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.reverse</span><span class="p">{</span>
+    <span class="k">top</span><span class="o">:</span><span class="k">auto</span><span class="p">;</span>
+    <span class="k">bottom</span><span class="o">:</span><span class="m">100%</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>And here&#39;s the javascript for the second iteration:</p>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.dropdown-toggle&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="c1">// get the scollTop (distance scrolled from top)</span>
+    <span class="kd">var</span> <span class="nx">scrollTop</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">scrollTop</span><span class="p">();</span>
+    <span class="c1">// get the top offset of the dropdown (distance from top of the page)</span>
+    <span class="kd">var</span> <span class="nx">topOffset</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.dropdown&quot;</span><span class="p">).</span><span class="nx">offset</span><span class="p">().</span><span class="nx">top</span><span class="p">;</span>
+    <span class="c1">// calculate the dropdown offset relative to window position</span>
+    <span class="kd">var</span> <span class="nx">relativeOffset</span> <span class="o">=</span> <span class="nx">topOffset</span><span class="o">-</span><span class="nx">scrollTop</span><span class="p">;</span>
+    <span class="c1">// get the window height</span>
+    <span class="kd">var</span> <span class="nx">windowHeight</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">height</span><span class="p">();</span>
+
+    <span class="c1">// if the relative offset is greater than half the window height,</span>
+    <span class="c1">// reverse the dropdown.</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">relativeOffset</span> <span class="o">&gt;</span> <span class="nx">windowHeight</span><span class="o">/</span><span class="mi">2</span><span class="p">){</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.dropdown-menu&quot;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">&quot;reverse&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.dropdown-menu&quot;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s2">&quot;reverse&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/hmtl/2014/10/28/a-little-something-about-anchors-without-href/">
+        A little something about anchors without href
+      </a>
+    </h1>
+
+    <span class="post-date">28 Oct 2014</span>
+
+    <p class="message">
+    Today, I spent quite some time wondering why an anchor element on my page didn't have the correct cursor property. This quick post explains why.
+</p>
+
+<h2>The right way to use <code>a</code></h2>
+
+<p>All web developers have already used anchor (<code>a</code>) elements without specifying the value of the <code>href</code> attribute. Often, we want to have a link that opens a modal box or fires an ajax call. We want it to look like a link but not to trigger a redirection.</p>
+
+<p>Historically, this was possible using either one of the following methods:</p>
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Click me I&#39;m a link<span class="nt">&lt;/a&gt;</span>
+</code></pre></div><div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:void(0)&quot;</span><span class="nt">&gt;</span>Click me I&#39;m a link<span class="nt">&lt;/a&gt;</span>
+</code></pre></div>
+<p>The difference between these two methods being that the latter will not scroll the page whereas the first method will bring you back to the top. See this <a href="http://jsfiddle.net/SirCelsius/fpcmkgfL/">fiddle</a> for an example.</p>
+
+<p>The HTML5 specification changed that by making the <code>href</code> attribute optional. You may now create <a href="http://www.w3.org/TR/html-markup/a.html#placeholder-hyperlink">placeholder hyperlinks</a> that will be links, but will not trigger a redirection. And you can still do fancy stuff with them if you want to.</p>
+
+<h2>There is a slight problem</h2>
+
+<p>If there weren&#39;t any problems, things would be too perfect to be true and us lowly devs would end up being useless.</p>
+
+<p>If you create a placehoder link in your website, the <code>cursor</code> property will not always be set to <code>pointer</code> as it should. As a matter of fact some browsers will style that as a simple text element. See this <a href="http://jsfiddle.net/SirCelsius/9vrdq6ca/2/">fiddle</a> for an example.</p>
+
+<p>In the end, you&#39;re better off using the good old <code>javascript:void(0)</code> method!</p>
+
+  </div>
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="/2014/10/14/ahoy/">
+        Hello
+      </a>
+    </h1>
+
+    <span class="post-date">14 Oct 2014</span>
+
+    <p class="message">This is the first post ever on this blog. I'll try to describe as clearly as I can what I will post here.</p>
+
+<h4>Hey there</h4>
+
+<p>Glad you got here!</p>
+
+<p>This is my first post ever on this website, it&#39;s not much, I just came by to say hello.</p>
+
+<p>I&#39;ll be writing things here as often as I can about what I do daily, both at work and at home.</p>
+
+<p>In the meantime, feel free to tweet to me <a href="http://twitter.com/MonsieurCelsius">@MonsieurCelsius</a> or head over to the <a href="/about">about</a> page where you can read a little about who I am.</p>
+
+  </div>
+  
+</div>
+
+<div class="pagination">
+  
+    <span class="pagination-item older">Older</span>
+  
+  
+    
+      <a class="pagination-item newer" href="/">Newer</a>
+    
+  
+</div>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+    <script>
+      (function(document) {
+        var toggle = document.querySelector('.sidebar-toggle');
+        var sidebar = document.querySelector('#sidebar');
+        var checkbox = document.querySelector('#sidebar-checkbox');
+
+        document.addEventListener('click', function(e) {
+          var target = e.target;
+
+          if(!checkbox.checked ||
+             sidebar.contains(target) ||
+             (target === checkbox || target === toggle)) return;
+
+          checkbox.checked = false;
+        }, false);
+      })(document);
+
+      // Google Analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-47088191-3', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>
