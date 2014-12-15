@@ -4,42 +4,13 @@
  <title>Ali Connors</title>
  <link href="http://aliconnors.me/atom.xml" rel="self"/>
  <link href="http://aliconnors.me/"/>
- <updated>2014-12-15T15:32:20+01:00</updated>
+ <updated>2014-12-15T15:42:37+01:00</updated>
  <id>http://aliconnors.me</id>
  <author>
    <name>Marc Bramaud du Boucheron</name>
    <email>m.duboucheron@gmail.com</email>
  </author>
 
- 
- <entry>
-   <title>Integration Testing in Grails - Redirection</title>
-   <link href="http://aliconnors.me/code/grails/2014/12/15/integration-testing-in-grails--redirection/"/>
-   <updated>2014-12-15T00:00:00+01:00</updated>
-   <id>http://aliconnors.me/code/grails/2014/12/15/integration-testing-in-grails--redirection</id>
-   <content type="html">&lt;p class=&quot;message&quot;&gt;It might just be me, but it seems to me that there aren&#39;t that many docs out there regarding testing in grails. And even when there are, they tend to be very confusing regarding the differences between &lt;em&gt;integration&lt;/em&gt; and &lt;em&gt;unit&lt;/em&gt; testing. That being said, here&#39;s a little something about testing redirection.&lt;/p&gt;
-
-&lt;h2&gt;Basic redirection&lt;/h2&gt;
-
-&lt;p&gt;When the action you are testing is similar to the following:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;kt&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;someAction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;redirect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;action:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;someOtherAction&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Testing the redirection is dead simple:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content>
- </entry>
- 
- <entry>
-   <title>Grunt and Bower ftw</title>
-   <link href="http://aliconnors.me/about/2014/12/15/grunt-and-bower-ftw/"/>
-   <updated>2014-12-15T00:00:00+01:00</updated>
-   <id>http://aliconnors.me/about/2014/12/15/grunt-and-bower-ftw</id>
-   <content type="html">&lt;p class=&quot;message&quot;&gt;Over the weekend, I switched from the original jekyll build of the site to a new process using &lt;em&gt;bower&lt;/em&gt; and &lt;em&gt;grunt&lt;/em&gt;&lt;/p&gt;
-</content>
- </entry>
  
  <entry>
    <title>Integration Testing in Grails - A few notes</title>
@@ -328,9 +299,9 @@ Aborting
  
  <entry>
    <title>A little something about anchors without href</title>
-   <link href="http://aliconnors.me/hmtl/2014/10/28/a-little-something-about-anchors-without-href/"/>
+   <link href="http://aliconnors.me/html/2014/10/28/a-little-something-about-anchors-without-href/"/>
    <updated>2014-10-28T00:00:00+01:00</updated>
-   <id>http://aliconnors.me/hmtl/2014/10/28/a-little-something-about-anchors-without-href</id>
+   <id>http://aliconnors.me/html/2014/10/28/a-little-something-about-anchors-without-href</id>
    <content type="html">&lt;p class=&quot;message&quot;&gt;
     Today, I spent quite some time wondering why an anchor element on my page didn&#39;t have the correct cursor property. This quick post explains why.
 &lt;/p&gt;
