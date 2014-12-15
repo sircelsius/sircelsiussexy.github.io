@@ -1,0 +1,21 @@
+{
+  "name": "sircelsiussexy.github.io",
+  "version": "1.0.0",
+  "homepage": "https://github.com/sircelsiussexy/sircelsiussexy.github.io",
+  "authors": [
+    "Marc du Boucheron <bramauddub@eisti.eu>"
+  ],
+  "description": "\"SirCelsiusSexy's blog\"",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.1"
+  }
+}

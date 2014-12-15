@@ -32,3 +32,11 @@ github.home:        'https://github.com/sircelsiussexy'
 # Disable github building
 include:
   - .nojekyll
+
+# Remove files from build
+exclude:
+  - "bower_components"
+  - "bower.json"
+  - "package.json"
+  - "node_modules"
+  - "Gruntfile.coffee"
