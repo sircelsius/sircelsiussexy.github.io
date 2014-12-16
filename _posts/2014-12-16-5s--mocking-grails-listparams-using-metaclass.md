@@ -1,11 +1,13 @@
 ---
 layout: post
-title: 5s - mocking Grails' list(params){...} using metaClass
+title: "5s - mocking Grails' list(params){...} using metaClass"
 categories: [5s, Grails]
 tags: [Testing, Mock]
 published: true
+fivesecond: true
 date: "2014-12-16"
 description: "Snippet - Mock a domain's createCriteria().list(params){} method"
+
 ---
 
 ````groovy
