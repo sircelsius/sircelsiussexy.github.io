@@ -4,13 +4,41 @@
  <title>Ali Connors</title>
  <link href="http://aliconnors.me/atom.xml" rel="self"/>
  <link href="http://aliconnors.me/"/>
- <updated>2014-12-15T15:42:37+01:00</updated>
+ <updated>2014-12-16T11:31:43+01:00</updated>
  <id>http://aliconnors.me</id>
  <author>
    <name>Marc Bramaud du Boucheron</name>
    <email>m.duboucheron@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Grunt and Bower ftw</title>
+   <link href="http://aliconnors.me/about/2014/12/15/grunt-and-bower-ftw/"/>
+   <updated>2014-12-15T00:00:00+01:00</updated>
+   <id>http://aliconnors.me/about/2014/12/15/grunt-and-bower-ftw</id>
+   <content type="html">&lt;p class=&quot;message&quot;&gt;Over the weekend, I switched from the original jekyll build of the site to a new workflow using &lt;em&gt;bower&lt;/em&gt; and &lt;em&gt;grunt&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The original jekyll building process is cool, but it lacks a few things to make it really unforgetable. After playing around a bit with &lt;em&gt;liquid&lt;/em&gt; tags to add some features to my pages, I thought I might need a bit more flexibility with dependency management and building / deploying.&lt;/p&gt;
+
+&lt;p&gt;To achieve that, here are the new features I have added:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;No github building of my jekyll. Only the compiled site is available on the repo&amp;#39;s &lt;code&gt;master&lt;/code&gt; branch.&lt;/li&gt;
+&lt;li&gt;Better dependency management with &lt;code&gt;bower&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;A new building and serving process using Grunt.&lt;/li&gt;
+&lt;li&gt;A couple of lesser features that are more the results of my messing around with the code than anything else:
+
+&lt;ul&gt;
+&lt;li&gt;Custom, per post scripts using Front Matter declarations. For example, this post includes a script named &lt;code&gt;bowergrunt.js&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Ability to choose which bower dependencies are injected in a page. This post uses the &lt;span data-d3=&quot;1&quot;&gt;d3&lt;/span&gt; &lt;span data-d3=&quot;2&quot;&gt;library&lt;/span&gt; for example (These insanely well chosen colors are &amp;quot;roboto&amp;quot; and &amp;quot;fedora&amp;quot; from &lt;a href=&quot;bada55.io&quot;&gt;bada55.io&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Only posts with the &lt;code&gt;published: true&lt;/code&gt; property in their Front Matter declaration appear on the homepage. I&amp;#39;m working on a way to completely disable unpublished posts from my building process soon.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I&amp;#39;ll be posting a comprehensive tutorial explaining how I got all this to work soon. In the meantime, know that it was largely inspired by the process described by &lt;a href=&quot;www.aymerick.com&quot;&gt;Aymerick&lt;/a&gt; on this &lt;a href=&quot;http://www.aymerick.com/2014/07/22/jekyll-github-pages-bower-bootstrap.html&quot;&gt;blog post&lt;/a&gt;.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Integration Testing in Grails - A few notes</title>
