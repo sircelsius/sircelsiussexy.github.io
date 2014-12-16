@@ -4,13 +4,26 @@
  <title>Ali Connors</title>
  <link href="http://aliconnors.me/atom.xml" rel="self"/>
  <link href="http://aliconnors.me/"/>
- <updated>2014-12-16T16:09:29+01:00</updated>
+ <updated>2014-12-16T18:37:15+01:00</updated>
  <id>http://aliconnors.me</id>
  <author>
    <name>Marc Bramaud du Boucheron</name>
    <email>m.duboucheron@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Introducing Five Seconds</title>
+   <link href="http://aliconnors.me/about/2014/12/16/introducing-five-seconds/"/>
+   <updated>2014-12-16T00:00:00+01:00</updated>
+   <id>http://aliconnors.me/about/2014/12/16/introducing-five-seconds</id>
+   <content type="html">&lt;h2&gt;So I created a new page&lt;/h2&gt;
+
+&lt;p&gt;It&amp;#39;s called &lt;strong&gt;Five Seconds&lt;/strong&gt;, and it is a list of snippets that I find while trying to solve everyday problems.&lt;/p&gt;
+
+&lt;p&gt;You can access that page via the sidebar or directly from &lt;a href=&quot;/fiveseconds&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>5s - mocking Grails' list(params){...} using metaClass</title>

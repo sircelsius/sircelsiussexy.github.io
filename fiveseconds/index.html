@@ -11,16 +11,14 @@
 
   <!-- Analytics meta-tags -->
   
-    <meta name="description" content="Is it safe to use anchor elements without href?" />
+    <meta name="description" content="A software and web development blog. By Marc du Boucheron" />
   
 
-  
-    <meta http-equiv="date" content="2014-10-28 00:00:00 +0100" />
   
 
   <title>
     
-      A little something about anchors without href &middot; Ali Connors
+      Five Seconds &middot; Ali Connors
     
   </title>
 
@@ -75,7 +73,7 @@
     
       
         
-          <a class="sidebar-nav-item" href="/fiveseconds/">Five Seconds</a>
+          <a class="sidebar-nav-item active" href="/fiveseconds/">Five Seconds</a>
         
       
     
@@ -109,67 +107,53 @@
       </div>
 
       <div class="container content">
-        <div class="post well shadow-z-2">
-  <h1 class="post-title">A little something about anchors without href</h1>
-  <span class="post-date">28 Oct 2014</span>
-  <p class="message">
-    Today, I spent quite some time wondering why an anchor element on my page didn't have the correct cursor property. This quick post explains why.
-</p>
+        <div class="page">
+  <h1 class="page-title">Five Seconds</h1>
+  <p>Sometimes, a long blog post isn't needed to understand a short bit of code. These 5s posts are a few of these little snippets that I find to be useful from time to time.</p>
 
-<h2>The right way to use <code>a</code></h2>
+<div class="posts">
+  
+    
+  
+    
+      <div class="well shadow-z-2 post">
+        <h1 class="post-title">
+          <a href="/5s/grails/2014/12/16/5s--mocking-grails-listparams-using-metaclass/">
+            5s - mocking Grails' list(params){...} using metaClass
+          </a>
+        </h1>
 
-<p>All web developers have already used anchor (<code>a</code>) elements without specifying the value of the <code>href</code> attribute. Often, we want to have a link that opens a modal box or fires an ajax call. We want it to look like a link but not to trigger a redirection.</p>
+        <span class="post-date">16 Dec 2014</span>
 
-<p>Historically, this was possible using either one of the following methods:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;#&quot;</span><span class="nt">&gt;</span>Click me I&#39;m a link<span class="nt">&lt;/a&gt;</span>
-</code></pre></div><div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:void(0)&quot;</span><span class="nt">&gt;</span>Click me I&#39;m a link<span class="nt">&lt;/a&gt;</span>
+        <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">Domain</span><span class="o">.</span><span class="na">metaClass</span><span class="o">.</span><span class="na">static</span><span class="o">.</span><span class="na">createCriteria</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="o">[</span>
+    <span class="nl">list:</span> <span class="o">{</span>
+      <span class="n">Object</span> <span class="n">params</span><span class="o">,</span> <span class="n">Closure</span> <span class="n">cls</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="o">[</span><span class="n">domain1</span><span class="o">,</span> <span class="n">domain2</span><span class="o">]</span> 
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
 </code></pre></div>
-<p>The difference between these two methods being that the latter will not scroll the page whereas the first method will bring you back to the top. See this <a href="http://jsfiddle.net/SirCelsius/fpcmkgfL/">fiddle</a> for an example.</p>
+<p><small>Source and explanation on <a href="http://stackoverflow.com/a/11725359/3465375">stackoverflow</a>.</small></p>
 
-<p>The HTML5 specification changed that by making the <code>href</code> attribute optional. You may now create <a href="http://www.w3.org/TR/html-markup/a.html#placeholder-hyperlink">placeholder hyperlinks</a> that will be links, but will not trigger a redirection. And you can still do fancy stuff with them if you want to.</p>
-
-<h2>There is a slight problem</h2>
-
-<p>If there weren&#39;t any problems, things would be too perfect to be true and us lowly devs would end up being useless.</p>
-
-<p>If you create a placehoder link in your website, the <code>cursor</code> property will not always be set to <code>pointer</code> as it should. As a matter of fact some browsers will style that as a simple text element. See this <a href="http://jsfiddle.net/SirCelsius/9vrdq6ca/2/">fiddle</a> for an example.</p>
-
-<p>In the end, you&#39;re better off using the good old <code>javascript:void(0)</code> method!</p>
-
+      </div>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
 </div>
 
-<div class="related">
-  <h2>Related Posts</h2>
-  <ul class="related-posts">
-    
-      <li>
-        <h3>
-          <a href="//about/2014/12/16/introducing-five-seconds/">
-            Introducing Five Seconds
-            <small>16 Dec 2014</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="//5s/grails/2014/12/16/5s--mocking-grails-listparams-using-metaclass/">
-            5s - mocking Grails' list(params){...} using metaClass
-            <small>16 Dec 2014</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="//about/2014/12/15/grunt-and-bower-ftw/">
-            Grunt and Bower ftw
-            <small>15 Dec 2014</small>
-          </a>
-        </h3>
-      </li>
-    
-  </ul>
 </div>
 
       </div>
