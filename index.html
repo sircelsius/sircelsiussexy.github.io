@@ -24,6 +24,7 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="/public/css/aliconnors.css">
+  <link rel="stylesheet" href="/vendor/css/material.css">
   <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
 
   <!-- Icons -->
@@ -90,7 +91,7 @@
     <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
          content to avoid any CSS collisions with our real content. -->
     <div class="wrap">
-      <div class="masthead">
+      <div class="masthead well shadow-z-2">
         <div class="container">
           <h3 class="masthead-title">
             <a href="/" title="Home">Ali Connors</a>
@@ -103,7 +104,30 @@
         <div class="posts">
   
   
-  <div class="post">
+  <div class="well shadow-z-2 post">
+    <h1 class="post-title">
+      <a href="/5s/grails/2014/12/16/5s--mocking-grails-listparams-using-metaclass/">
+        5s - mocking Grails' list(params){...} using metaClass
+      </a>
+    </h1>
+
+    <span class="post-date">16 Dec 2014</span>
+
+    <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">Domain</span><span class="o">.</span><span class="na">metaClass</span><span class="o">.</span><span class="na">static</span><span class="o">.</span><span class="na">createCriteria</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="o">[</span>
+    <span class="nl">list:</span> <span class="o">{</span>
+      <span class="n">Object</span> <span class="n">params</span><span class="o">,</span> <span class="n">Closure</span> <span class="n">cls</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="o">[</span><span class="n">domain1</span><span class="o">,</span> <span class="n">domain2</span><span class="o">]</span> 
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div>
+<p><small>Source and explanation on <a href="http://stackoverflow.com/a/11725359/3465375">stackoverflow</a>.</small></p>
+
+  </div>
+  
+  
+  
+  <div class="well shadow-z-2 post">
     <h1 class="post-title">
       <a href="/about/2014/12/15/grunt-and-bower-ftw/">
         Grunt and Bower ftw
@@ -114,7 +138,7 @@
 
     <p class="message">Over the weekend, I switched from the original jekyll build of the site to a new workflow using <em>bower</em> and <em>grunt</em>.</p>
 
-<p>The original jekyll building process is cool, but it lacks a few things to make it really unforgetable. After playing around a bit with <em>liquid</em> tags to add some features to my pages, I thought I might need a bit more flexibility with dependency management and building / deploying.</p>
+<p>The original jekyll building process is cool, but it lacks a few things to make it really unforgettable. After playing around a bit with <em>liquid</em> tags to add some features to my pages, I thought I might need a bit more flexibility with dependency management and building / deploying.</p>
 
 <p>To achieve that, here are the new features I have added:</p>
 
@@ -133,11 +157,13 @@
 
 <p>I&#39;ll be posting a comprehensive tutorial explaining how I got all this to work soon. In the meantime, know that it was largely inspired by the process described by <a href="www.aymerick.com">Aymerick</a> on this <a href="http://www.aymerick.com/2014/07/22/jekyll-github-pages-bower-bootstrap.html">blog post</a>.</p>
 
+<p>Oh yeah, and I messed around with <a href="http://fezvrasta.github.io/bootstrap-material-design/">Bootstrap Material Design</a> a little. I don&#39;t know if I&#39;ll keep it or not.</p>
+
   </div>
   
   
   
-  <div class="post">
+  <div class="well shadow-z-2 post">
     <h1 class="post-title">
       <a href="/code/grails/2014/12/11/integration-testing-in-grails-a-few-notes/">
         Integration Testing in Grails - A few notes
@@ -238,7 +264,7 @@
   
   
   
-  <div class="post">
+  <div class="well shadow-z-2 post">
     <h1 class="post-title">
       <a href="/git/2014/12/10/mac-os-x-case-senitivity-and-git/">
         Mac OS X case sensitivity and git
@@ -296,7 +322,7 @@ Aborting
   
   
   
-  <div class="post">
+  <div class="well shadow-z-2 post">
     <h1 class="post-title">
       <a href="/code/2014/10/29/merging-lanyons-stylesheets-with-your-own/">
         Merging Lanyon's stylesheets with your own
@@ -368,80 +394,6 @@ Aborting
 
 <p>I escaped the <code>liquid</code> tags in the code samples above using the <code>raw</code> and <code>endraw</code> tags, as described in  <a href="http://stackoverflow.com/a/5866429/3465375">this stackoverflow answer</a>.</p>
 
-  </div>
-  
-  
-  
-  <div class="post">
-    <h1 class="post-title">
-      <a href="/tutorial/bootstrap/2014/10/28/modifying-the-bootstrap-dropdown-on-scroll/">
-        Modifying the Bootstrap dropdown on scroll
-      </a>
-    </h1>
-
-    <span class="post-date">28 Oct 2014</span>
-
-    <p class="message">
-    I recently answered a <a href="http://stackoverflow.com/a/26590613/3465375">Stackoverflow question</a> about getting a dropdown menu to change the direction in which it opens depending on its position in the window. Here's a little explanation about how I got things to work.
-</p>
-
-<h2>Problem overview</h2>
-
-<p>The idea here is to get the Bootstrap <a href="http://getbootstrap.com/components/#dropdowns">dropdown</a> component to have a more user friendly way of opening when it is displayed at the bottom of a page. If the dropdown is in the lower part of the page, it is a bit painful for the user to have to scroll down to see the menu items.</p>
-
-<iframe width="100%" height="300" src="http://jsfiddle.net/SirCelsius/2uyh4j3w/12/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
-<p class="description">This is not cool, Bootstrap!</p>
-
-<p>The person who asked the question wanted to be able to change the way the dropdown opens depending on its position in the window. If the dropdown wa below the vertical center of the window, it had to be opened upwards, otherwise downwards.</p>
-
-<h2>Final result</h2>
-
-<p>I made two iterations of the dropdown: the first changes dynamically when the user scrolls:</p>
-
-<iframe width="100%" height="300" src="http://jsfiddle.net/SirCelsius/2uyh4j3w/10/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
-<p class="description">The magic happens when scrolling</p>
-
-<p>The second - which I personally find less intrusive for the user - does not change states while it is open, but calculates it&#39;s most efficient state before opening:</p>
-
-<iframe width="100%" height="300" src="http://jsfiddle.net/SirCelsius/2uyh4j3w/11/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
-
-<p class="description">The magic opens when opening the dropdown</p>
-
-<h2>Explanation</h2>
-
-<p>Both answers calculate a value that I named <code>relativeOffset</code> which is the offset between the top of the window - not the top of the page - and the dropdown toggle. By comparing this to the window height, we can know whether the dropdown is in the upper or lower part of what&#39;s visible in the window.</p>
-
-<p>All we have to do is listen to the right event - <code>$(window).scroll</code> for the first solution, <code>$(&#39;.dropdown-toggle&#39;).click</code> for the second - and toggle the <code>reverse</code> style if we want to.</p>
-
-<p>Here&#39;s the code for the <code>reverse</code> class:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nc">.reverse</span><span class="p">{</span>
-    <span class="k">top</span><span class="o">:</span><span class="k">auto</span><span class="p">;</span>
-    <span class="k">bottom</span><span class="o">:</span><span class="m">100%</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>And here&#39;s the javascript for the second iteration:</p>
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.dropdown-toggle&quot;</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
-    <span class="c1">// get the scollTop (distance scrolled from top)</span>
-    <span class="kd">var</span> <span class="nx">scrollTop</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">scrollTop</span><span class="p">();</span>
-    <span class="c1">// get the top offset of the dropdown (distance from top of the page)</span>
-    <span class="kd">var</span> <span class="nx">topOffset</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.dropdown&quot;</span><span class="p">).</span><span class="nx">offset</span><span class="p">().</span><span class="nx">top</span><span class="p">;</span>
-    <span class="c1">// calculate the dropdown offset relative to window position</span>
-    <span class="kd">var</span> <span class="nx">relativeOffset</span> <span class="o">=</span> <span class="nx">topOffset</span><span class="o">-</span><span class="nx">scrollTop</span><span class="p">;</span>
-    <span class="c1">// get the window height</span>
-    <span class="kd">var</span> <span class="nx">windowHeight</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">).</span><span class="nx">height</span><span class="p">();</span>
-
-    <span class="c1">// if the relative offset is greater than half the window height,</span>
-    <span class="c1">// reverse the dropdown.</span>
-    <span class="k">if</span><span class="p">(</span><span class="nx">relativeOffset</span> <span class="o">&gt;</span> <span class="nx">windowHeight</span><span class="o">/</span><span class="mi">2</span><span class="p">){</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.dropdown-menu&quot;</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">&quot;reverse&quot;</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="k">else</span><span class="p">{</span>
-        <span class="nx">$</span><span class="p">(</span><span class="s2">&quot;.dropdown-menu&quot;</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s2">&quot;reverse&quot;</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">});</span>
-</code></pre></div>
   </div>
   
   

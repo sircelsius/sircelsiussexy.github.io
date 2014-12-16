@@ -11,14 +11,16 @@
 
   <!-- Analytics meta-tags -->
   
-    <meta name="description" content="A software and web development blog. By Marc du Boucheron" />
+    <meta name="description" content="Snippet - Mock a domain's createCriteria().list(params){} method" />
   
 
+  
+    <meta http-equiv="date" content="2014-12-16 00:00:00 +0100" />
   
 
   <title>
     
-      404: Page not found &middot; Ali Connors
+      5s - mocking Grails' list(params){...} using metaClass &middot; Ali Connors
     
   </title>
 
@@ -101,9 +103,53 @@
       </div>
 
       <div class="container content">
-        <div class="page">
-  <h1 class="page-title">404: Page not found</h1>
-  <p class="lead">Sorry, we've misplaced that URL or it's pointing to something that doesn't exist. <a href="/">Head back home</a> to try finding it again.</p>
+        <div class="post well shadow-z-2">
+  <h1 class="post-title">5s - mocking Grails' list(params){...} using metaClass</h1>
+  <span class="post-date">16 Dec 2014</span>
+  <div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">Domain</span><span class="o">.</span><span class="na">metaClass</span><span class="o">.</span><span class="na">static</span><span class="o">.</span><span class="na">createCriteria</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="o">[</span>
+    <span class="nl">list:</span> <span class="o">{</span>
+      <span class="n">Object</span> <span class="n">params</span><span class="o">,</span> <span class="n">Closure</span> <span class="n">cls</span> <span class="o">-&gt;</span> <span class="k">return</span> <span class="o">[</span><span class="n">domain1</span><span class="o">,</span> <span class="n">domain2</span><span class="o">]</span> 
+    <span class="o">}</span>
+  <span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div>
+<p><small>Source and explanation on <a href="http://stackoverflow.com/a/11725359/3465375">stackoverflow</a>.</small></p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="//about/2014/12/15/grunt-and-bower-ftw/">
+            Grunt and Bower ftw
+            <small>15 Dec 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="//code/grails/2014/12/11/integration-testing-in-grails-a-few-notes/">
+            Integration Testing in Grails - A few notes
+            <small>11 Dec 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="//git/2014/12/10/mac-os-x-case-senitivity-and-git/">
+            Mac OS X case sensitivity and git
+            <small>10 Dec 2014</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
 </div>
 
       </div>

@@ -1050,6 +1050,13 @@ a.pagination-item:hover {
 }
 
 
+@media(min-width: 768px){
+  .post{
+    margin-left: -2rem;
+    margin-right: -2rem;
+  }
+}
+
 /*Center post images horizontally */
 .post img{
 	margin-left: auto;

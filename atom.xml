@@ -4,7 +4,7 @@
  <title>Ali Connors</title>
  <link href="http://aliconnors.me/atom.xml" rel="self"/>
  <link href="http://aliconnors.me/"/>
- <updated>2014-12-16T11:31:43+01:00</updated>
+ <updated>2014-12-16T16:09:29+01:00</updated>
  <id>http://aliconnors.me</id>
  <author>
    <name>Marc Bramaud du Boucheron</name>
@@ -13,13 +13,30 @@
 
  
  <entry>
+   <title>5s - mocking Grails' list(params){...} using metaClass</title>
+   <link href="http://aliconnors.me/5s/grails/2014/12/16/5s--mocking-grails-listparams-using-metaclass/"/>
+   <updated>2014-12-16T00:00:00+01:00</updated>
+   <id>http://aliconnors.me/5s/grails/2014/12/16/5s--mocking-grails-listparams-using-metaclass</id>
+   <content type="html">&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;Domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;metaClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createCriteria&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;nl&quot;&gt;list:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Closure&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cls&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;domain1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;domain2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; 
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;small&gt;Source and explanation on &lt;a href=&quot;http://stackoverflow.com/a/11725359/3465375&quot;&gt;stackoverflow&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>Grunt and Bower ftw</title>
    <link href="http://aliconnors.me/about/2014/12/15/grunt-and-bower-ftw/"/>
    <updated>2014-12-15T00:00:00+01:00</updated>
    <id>http://aliconnors.me/about/2014/12/15/grunt-and-bower-ftw</id>
    <content type="html">&lt;p class=&quot;message&quot;&gt;Over the weekend, I switched from the original jekyll build of the site to a new workflow using &lt;em&gt;bower&lt;/em&gt; and &lt;em&gt;grunt&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;The original jekyll building process is cool, but it lacks a few things to make it really unforgetable. After playing around a bit with &lt;em&gt;liquid&lt;/em&gt; tags to add some features to my pages, I thought I might need a bit more flexibility with dependency management and building / deploying.&lt;/p&gt;
+&lt;p&gt;The original jekyll building process is cool, but it lacks a few things to make it really unforgettable. After playing around a bit with &lt;em&gt;liquid&lt;/em&gt; tags to add some features to my pages, I thought I might need a bit more flexibility with dependency management and building / deploying.&lt;/p&gt;
 
 &lt;p&gt;To achieve that, here are the new features I have added:&lt;/p&gt;
 
@@ -37,6 +54,8 @@
 &lt;/ol&gt;
 
 &lt;p&gt;I&amp;#39;ll be posting a comprehensive tutorial explaining how I got all this to work soon. In the meantime, know that it was largely inspired by the process described by &lt;a href=&quot;www.aymerick.com&quot;&gt;Aymerick&lt;/a&gt; on this &lt;a href=&quot;http://www.aymerick.com/2014/07/22/jekyll-github-pages-bower-bootstrap.html&quot;&gt;blog post&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Oh yeah, and I messed around with &lt;a href=&quot;http://fezvrasta.github.io/bootstrap-material-design/&quot;&gt;Bootstrap Material Design&lt;/a&gt; a little. I don&amp;#39;t know if I&amp;#39;ll keep it or not.&lt;/p&gt;
 </content>
  </entry>
  
