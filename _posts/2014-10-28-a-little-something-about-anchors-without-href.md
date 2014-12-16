@@ -1,8 +1,8 @@
 ---
 layout: post
 title: A little something about anchors without href
-published: True
-categories: [HMTL]
+published: true
+categories: [HTML]
 tags: [HTML, CSS, a, href, cursor]
 date: "2014-10-28"
 description: "Is it safe to use anchor elements without href?"

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Mac OS X case sensitivity and git
-published: True
+published: true
 categories: [git]
 tags: [Code, git, rage, ignorecase, osx]
 ---

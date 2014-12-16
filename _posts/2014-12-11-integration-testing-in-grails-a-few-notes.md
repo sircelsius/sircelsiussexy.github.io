@@ -3,7 +3,7 @@ layout: post
 title: Integration Testing in Grails - A few notes
 categories: [Code, Grails]
 tags: [Integration, Testing]
-published: True
+published: true
 date: "2014-12-11"
 description: "Grails Integration Tests snippets and best practices"
 ---

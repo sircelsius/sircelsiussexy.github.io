@@ -2,6 +2,7 @@
 layout: post
 title: "Hello"
 date: "2014-10-14"
+published: true
 ---
 
 <p class="message">This is the first post ever on this blog. I'll try to describe as clearly as I can what I will post here.</p>

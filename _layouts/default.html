@@ -25,7 +25,12 @@
     </div>
 
     <label for="sidebar-checkbox" class="sidebar-toggle"></label>
-
+    {% if page.d3 == true %}
+    <script src="/vendor/js/d3.min.js"></script>
+    {% endif %}
+    {% for script in page.scripts %}
+      <script  async src="/public/js/{{script}}"></script>
+    {% endfor %}
     <script>
       (function(document) {
         var toggle = document.querySelector('.sidebar-toggle');

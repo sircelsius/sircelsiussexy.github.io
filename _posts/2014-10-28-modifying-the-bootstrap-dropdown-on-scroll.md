@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Modifying the Bootstrap dropdown on scroll
-published: True
+published: true
 categories: [Tutorial, Bootstrap]
 tags: [HTML, CSS, JS, Bootstrap]
 date: "2014-10-28"
