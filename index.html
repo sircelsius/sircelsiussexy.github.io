@@ -6,7 +6,7 @@ title: Home
 <div class="posts">
   {% for post in paginator.posts %}
   {% if post.published == true %}
-  <div class="post">
+  <div class="well shadow-z-2 post">
     <h1 class="post-title">
       <a href="{{ post.url }}">
         {{ post.title }}

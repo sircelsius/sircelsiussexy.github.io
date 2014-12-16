@@ -13,7 +13,7 @@ scripts:
 
 <p class="message">Over the weekend, I switched from the original jekyll build of the site to a new workflow using <em>bower</em> and <em>grunt</em>.</p>
 
-The original jekyll building process is cool, but it lacks a few things to make it really unforgetable. After playing around a bit with *liquid* tags to add some features to my pages, I thought I might need a bit more flexibility with dependency management and building / deploying.
+The original jekyll building process is cool, but it lacks a few things to make it really unforgettable. After playing around a bit with *liquid* tags to add some features to my pages, I thought I might need a bit more flexibility with dependency management and building / deploying.
 
 To achieve that, here are the new features I have added:
 
@@ -27,3 +27,5 @@ To achieve that, here are the new features I have added:
 
 
 I'll be posting a comprehensive tutorial explaining how I got all this to work soon. In the meantime, know that it was largely inspired by the process described by [Aymerick](www.aymerick.com) on this [blog post](http://www.aymerick.com/2014/07/22/jekyll-github-pages-bower-bootstrap.html).
+
+Oh yeah, and I messed around with [Bootstrap Material Design](http://fezvrasta.github.io/bootstrap-material-design/) a little. I don't know if I'll keep it or not.

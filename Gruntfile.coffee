@@ -32,6 +32,25 @@ module.exports = (grunt) ->
           src: "bootstrap.min.js"
           dest: "vendor/js/"
         }]
+      bootstrapmaterial:
+        files: [{
+          expand: true
+          cwd: "bower_components/bootstrap-material-design/dist/css/"
+          src: "material.css"
+          dest: "vendor/css/"
+        },
+        {
+          expand: true
+          cwd: "bower_components/bootstrap-material-design/dist/css/"
+          src: "material.css.map"
+          dest: "vendor/css/"
+        },
+        {
+          expand: true
+          cwd: "bower_components/bootstrap-material-design/dist/js/"
+          src: "material.js"
+          dest: "vendor/js/"
+        }]
       d3:
         files: [{
           expand: true
