@@ -8,6 +8,9 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-copy"
   grunt.loadNpmTasks "grunt-contrib-watch"
   grunt.loadNpmTasks "grunt-exec"
+  grunt.loadNpmTasks "grunt-contrib-cssmin"
+  grunt.loadNpmTasks "grunt-contrib-clean"
+  grunt.loadNpmTasks "grunt-contrib-htmlmin"
 
   grunt.initConfig
 
@@ -17,19 +20,6 @@ module.exports = (grunt) ->
           expand: true
           cwd: "bower_components/jquery/dist/"
           src: "jquery.min.js"
-          dest: "vendor/js/"
-        }]
-      bootstrap:
-        files: [{
-          expand: true
-          cwd: "bower_components/bootstrap/dist/css/"
-          src: "bootstrap.min.css"
-          dest: "vendor/css/"
-        },
-        {
-          expand: true
-          cwd: "bower_components/bootstrap/dist/js/"
-          src: "bootstrap.min.js"
           dest: "vendor/js/"
         }]
       bootstrapmaterial:
@@ -59,6 +49,18 @@ module.exports = (grunt) ->
           dest: "vendor/js"
         }]
 
+    cssmin:
+      combine:
+        files:
+          "public/css/aliconnors.min.css" : [
+            "public/css/lanyon.css",
+            "public/css/poole.css",
+            "vendor/css/*.css"
+            "public/css/aliconnors.css"
+          ]
+
+    clean: ["public/css/aliconnors.min.css", "vendor/css/*.css"]    
+
     exec:
       jekyll:
         cmd: "jekyll build --trace"
@@ -72,8 +74,8 @@ module.exports = (grunt) ->
           "_includes/**/*"
           "_layouts/**/*"
           "_posts/**/*"
-          "css/**/*"
-          "js/**/*"
+          "public/css/**/*"
+          "public/js/**/*"
           "_config.yml"
           "*.html"
           "*.md"
@@ -89,9 +91,24 @@ module.exports = (grunt) ->
           base: '_site'
           livereload: true
 
+    htmlmin:
+      dist:
+        options:
+          removeComments: true,
+          collapseWhitespace: true
+        files: [{
+          expand: true,
+          cwd: "_site",
+          src: "**/*.html",
+          dest: "_site"
+        }]
+
   grunt.registerTask "build", [
+    "clean"
     "copy"
+    "cssmin"
     "exec:jekyll"
+    "htmlmin"
   ]
 
   grunt.registerTask "serve", [
