@@ -13,3 +13,4 @@ description: "Adding cssmin, jsmin, htmlmin and other goodies to a jekyll static
   * Bootstrap Material Design
   * grunt
   * bower
+  * disqus
