@@ -1,142 +1,7 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-
-  <head>
-  <link href="http://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-
-  <!-- Enable responsiveness on mobile devices-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-
-  <!-- Analytics meta-tags -->
-  
-    <meta name="description" content="Customize your Lanyon styles and merge the files into one" />
-  
-
-  
-    <meta http-equiv="date" content="2014-10-29 00:00:00 +0100" />
-  
-
-  <title>
-    
-      Merging Lanyon's stylesheets with your own &middot; Ali Connors
-    
-  </title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="/public/css/aliconnors.min.css">
-  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
-
-  <!-- Icons -->
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
-  <link rel="shortcut icon" href="/public/favicon.ico">
-
-  <!-- RSS -->
-  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
-</head>
-
-
-  <body>
-
-    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
-     styles, `#sidebar-checkbox` for behavior. -->
-<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
-
-<!-- Toggleable sidebar -->
-<div class="sidebar" id="sidebar">
-  <div class="sidebar-item">
-    <p>A place where things about software and web development are written. By <a href="http://twitter.com/MonsieurCelsius">Sir Celsius</a></p>
-  </div>
-
-  <nav class="sidebar-nav">
-    <a class="sidebar-nav-item" href="/">Home</a>
-
-    
-
-    
-    
-      
-        
-      
-    
-      
-        
-      
-    
-      
-        
-          <a class="sidebar-nav-item" href="/about/">About</a>
-        
-      
-    
-      
-    
-      
-        
-          <a class="sidebar-nav-item" href="/fiveseconds/">Five Seconds</a>
-        
-      
-    
-      
-        
-      
-    
-    <span class="sidebar-nav-item">Currently v1.0.0</span>
-  </nav>
-
-  <div class="sidebar-item">
-    <p>
-      &copy; 2014. All rights reserved.
-    </p>
-  </div>
-</div>
-
-
-    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
-         content to avoid any CSS collisions with our real content. -->
-    <div class="wrap">
-      <div class="masthead well shadow-z-2">
-        <div class="container">
-          <h3 class="masthead-title">
-            <a href="/" title="Home">Ali Connors</a>
-            <small>Geek reveries</small>
-          </h3>
-        </div>
-      </div>
-
-      <div class="container content">
-        <div class="post well shadow-z-2">
-  <h1 class="post-title">Merging Lanyon's stylesheets with your own</h1>
-  <span class="post-date">29 Oct 2014</span>
-  <p class="message">
-    <a href="http://twitter.com/mdo">mdo</a>'s Lanyon theme for Jekyll is pretty swell. It has a good design and is dead simple to use.
-    I recently wanted to add a bit of custom styling and merge my new stylesheet with the existing ones. Here's how I did that.
-</p>
-
-<h2>Lanyon&#39;s existing style</h2>
-
-<p>Out of the box, Lanyon provides three different stylesheets:</p>
-
-<ul>
-<li><code>poole.css</code></li>
-<li><code>syntax.css</code></li>
-<li><code>lanyon.css</code></li>
-</ul>
-
-<p>These contain the different styles for headers, code blocks, sidebars and the likes, and are included in the <code>_includes/head.html</code> file in the following order:</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/public/css/poole.css&quot;</span><span class="nt">&gt;</span>
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us"><head><link href="http://gmpg.org/xfn/11" rel="profile"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="description" content="Customize your Lanyon styles and merge the files into one"><meta http-equiv="date" content="2014-10-29 00:00:00 +0100"><title>Merging Lanyon's stylesheets with your own &middot; Ali Connors</title><link rel="stylesheet" href="/public/css/aliconnors.min.css"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png"><link rel="shortcut icon" href="/public/favicon.ico"><link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml"></head><body><input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox"><div class="sidebar" id="sidebar"><div class="sidebar-item"><p>A place where things about software and web development are written. By <a href="http://twitter.com/MonsieurCelsius">Sir Celsius</a></p></div><nav class="sidebar-nav"><a class="sidebar-nav-item" href="/">Home</a> <a class="sidebar-nav-item" href="/about/">About</a> <a class="sidebar-nav-item" href="/fiveseconds/">Five Seconds</a> <span class="sidebar-nav-item">Currently v1.0.0</span></nav><div class="sidebar-item"><p>&copy; 2014. All rights reserved.</p></div></div><div class="wrap"><div class="masthead well shadow-z-2"><div class="container"><h3 class="masthead-title"><a href="/" title="Home">Ali Connors</a> <small>Geek reveries</small></h3></div></div><div class="container content"><div class="post well shadow-z-2"><h1 class="post-title">Merging Lanyon's stylesheets with your own</h1><span class="post-date">29 Oct 2014</span><p class="message"><a href="http://twitter.com/mdo">mdo</a>'s Lanyon theme for Jekyll is pretty swell. It has a good design and is dead simple to use. I recently wanted to add a bit of custom styling and merge my new stylesheet with the existing ones. Here's how I did that.</p><h2>Lanyon&#39;s existing style</h2><p>Out of the box, Lanyon provides three different stylesheets:</p><ul><li><code>poole.css</code></li><li><code>syntax.css</code></li><li><code>lanyon.css</code></li></ul><p>These contain the different styles for headers, code blocks, sidebars and the likes, and are included in the <code>_includes/head.html</code> file in the following order:</p><div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/public/css/poole.css&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/public/css/syntax.css&quot;</span><span class="nt">&gt;</span>
 <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/public/css/lanyon.css&quot;</span><span class="nt">&gt;</span>
-</code></pre></div>
-<h2>What I changed</h2>
-
-<p>What I wanted to do was merge all the files in one single <code>aliconnors.css</code> file (to reduce the number of http requests while being able to keep the original files).</p>
-
-<p>Although the right way to go would be to use a css minifier, I intend to change my workflow soon to use Sass, so I didn&#39;t want to change things too much.</p>
-
-<p>I ended up creating a CSS file which contains my custom rules and includes the original CSS using Front Matter:</p>
-<div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">---</span>
+</code></pre></div><h2>What I changed</h2><p>What I wanted to do was merge all the files in one single <code>aliconnors.css</code> file (to reduce the number of http requests while being able to keep the original files).</p><p>Although the right way to go would be to use a css minifier, I intend to change my workflow soon to use Sass, so I didn&#39;t want to change things too much.</p><p>I ended up creating a CSS file which contains my custom rules and includes the original CSS using Front Matter:</p><div class="highlight"><pre><code class="language-css" data-lang="css"><span class="nt">---</span>
 <span class="nt">layout</span><span class="o">:</span> <span class="nt">nil</span>
 <span class="nt">---</span>
 
@@ -158,26 +23,8 @@
     <span class="k">text-align</span><span class="o">:</span><span class="k">center</span><span class="p">;</span>
     <span class="k">color</span><span class="o">:</span><span class="m">#9a9a9a</span><span class="p">;</span>
 <span class="p">}</span>
-</code></pre></div>
-<p class="description">Front Matter includes in my CSS</p>
-
-<p>This merges all four files into one. After that, I simply updated my <code>head.html</code> to include the correct file.</p>
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/public/css/aliconnors.css&quot;</span><span class="nt">&gt;</span>
-</code></pre></div>
-<h2>What&#39;s next?</h2>
-
-<p>I&#39;ll be doing bigger, more radical changes on my workflow soon. I&#39;ll try to post explanations for them here.</p>
-
-<h3>Bonus</h3>
-
-<p>I escaped the <code>liquid</code> tags in the code samples above using the <code>raw</code> and <code>endraw</code> tags, as described in  <a href="http://stackoverflow.com/a/5866429/3465375">this stackoverflow answer</a>.</p>
-
-</div>
-
-
-   <div id="disqus_thread"></div>
-    <script type="text/javascript">
-        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+</code></pre></div><p class="description">Front Matter includes in my CSS</p><p>This merges all four files into one. After that, I simply updated my <code>head.html</code> to include the correct file.</p><div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/public/css/aliconnors.css&quot;</span><span class="nt">&gt;</span>
+</code></pre></div><h2>What&#39;s next?</h2><p>I&#39;ll be doing bigger, more radical changes on my workflow soon. I&#39;ll try to post explanations for them here.</p><h3>Bonus</h3><p>I escaped the <code>liquid</code> tags in the code samples above using the <code>raw</code> and <code>endraw</code> tags, as described in <a href="http://stackoverflow.com/a/5866429/3465375">this stackoverflow answer</a>.</p></div><div id="disqus_thread"></div><script type="text/javascript">/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
         var disqus_shortname = 'aliconnors'; // required: replace example with your forum shortname
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
@@ -185,53 +32,7 @@
             var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
             dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-<div class="related">
-  <h2>Related Posts</h2>
-  <ul class="related-posts">
-    
-      <li>
-        <h3>
-          <a href="//about/2014/12/16/introducing-five-seconds/">
-            Introducing Five Seconds
-            <small>16 Dec 2014</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="//5s/grails/2014/12/16/5s--mocking-grails-listparams-using-metaclass/">
-            5s - mocking Grails' list(params){...} using metaClass
-            <small>16 Dec 2014</small>
-          </a>
-        </h3>
-      </li>
-    
-      <li>
-        <h3>
-          <a href="//about/2014/12/15/grunt-and-bower-ftw/">
-            Grunt and Bower ftw
-            <small>15 Dec 2014</small>
-          </a>
-        </h3>
-      </li>
-    
-  </ul>
-</div>
-
-      </div>
-    </div>
-
-    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
-    
-    
-    <script>
-      (function(document) {
+        })();</script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript><div class="related"><h2>Related Posts</h2><ul class="related-posts"><li><h3><a href="//about/2014/12/16/introducing-five-seconds/">Introducing Five Seconds <small>16 Dec 2014</small></a></h3></li><li><h3><a href="//5s/grails/2014/12/16/5s--mocking-grails-listparams-using-metaclass/">5s - mocking Grails' list(params){...} using metaClass <small>16 Dec 2014</small></a></h3></li><li><h3><a href="//about/2014/12/15/grunt-and-bower-ftw/">Grunt and Bower ftw <small>15 Dec 2014</small></a></h3></li></ul></div><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-549192d656f6363e" async="async"></script></div></div><label for="sidebar-checkbox" class="sidebar-toggle"></label><script>(function(document) {
         var toggle = document.querySelector('.sidebar-toggle');
         var sidebar = document.querySelector('#sidebar');
         var checkbox = document.querySelector('#sidebar-checkbox');
@@ -254,8 +55,4 @@
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-47088191-3', 'auto');
-      ga('send', 'pageview');
-
-    </script>
-  </body>
-</html>
+      ga('send', 'pageview');</script></body></html>
