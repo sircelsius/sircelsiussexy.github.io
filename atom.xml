@@ -4,7 +4,7 @@
  <title>Ali Connors</title>
  <link href="http://aliconnors.me/atom.xml" rel="self"/>
  <link href="http://aliconnors.me/"/>
- <updated>2014-12-17T14:58:28+01:00</updated>
+ <updated>2014-12-17T15:19:12+01:00</updated>
  <id>http://aliconnors.me</id>
  <author>
    <name>Marc Bramaud du Boucheron</name>
@@ -61,12 +61,12 @@
 
 &lt;ul&gt;
 &lt;li&gt;Custom, per post scripts using Front Matter declarations. For example, this post includes a script named &lt;code&gt;bowergrunt.js&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Ability to choose which bower dependencies are injected in a page. This post uses the &lt;span data-d3=&quot;1&quot;&gt;d3&lt;/span&gt; &lt;span data-d3=&quot;2&quot;&gt;library&lt;/span&gt; for example (These insanely well chosen colors are &amp;quot;roboto&amp;quot; and &amp;quot;fedora&amp;quot; from &lt;a href=&quot;bada55.io&quot;&gt;bada55.io&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Ability to choose which bower dependencies are injected in a page. This post uses the &lt;span data-d3=&quot;1&quot;&gt;d3&lt;/span&gt; &lt;span data-d3=&quot;2&quot;&gt;library&lt;/span&gt; for example (These insanely well chosen colors are &amp;quot;roboto&amp;quot; and &amp;quot;fedora&amp;quot; from &lt;a href=&quot;http://www.bada55.io&quot;&gt;bada55.io&lt;/a&gt;).&lt;/li&gt;
 &lt;li&gt;Only posts with the &lt;code&gt;published: true&lt;/code&gt; property in their Front Matter declaration appear on the homepage. I&amp;#39;m working on a way to completely disable unpublished posts from my building process soon.&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;I&amp;#39;ll be posting a comprehensive tutorial explaining how I got all this to work soon. In the meantime, know that it was largely inspired by the process described by &lt;a href=&quot;www.aymerick.com&quot;&gt;Aymerick&lt;/a&gt; on this &lt;a href=&quot;http://www.aymerick.com/2014/07/22/jekyll-github-pages-bower-bootstrap.html&quot;&gt;blog post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I&amp;#39;ll be posting a comprehensive tutorial explaining how I got all this to work soon. In the meantime, know that it was largely inspired by the process described by &lt;a href=&quot;http://www.aymerick.com&quot;&gt;Aymerick&lt;/a&gt; on this &lt;a href=&quot;http://www.aymerick.com/2014/07/22/jekyll-github-pages-bower-bootstrap.html&quot;&gt;blog post&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Oh yeah, and I messed around with &lt;a href=&quot;http://fezvrasta.github.io/bootstrap-material-design/&quot;&gt;Bootstrap Material Design&lt;/a&gt; a little. I don&amp;#39;t know if I&amp;#39;ll keep it or not.&lt;/p&gt;
 </content>

@@ -1,5 +1,193 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us"><head><link href="http://gmpg.org/xfn/11" rel="profile"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="description" content="A software and web development blog. By Marc du Boucheron"><title>Ali Connors &middot; Geek reveries</title><link rel="stylesheet" href="/public/css/aliconnors.min.css"><link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400"><link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png"><link rel="shortcut icon" href="/public/favicon.ico"><link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml"></head><body><input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox"><div class="sidebar" id="sidebar"><div class="sidebar-item"><p>A place where things about software and web development are written. By <a href="http://twitter.com/MonsieurCelsius">Sir Celsius</a></p></div><nav class="sidebar-nav"><a class="sidebar-nav-item active" href="/">Home</a> <a class="sidebar-nav-item" href="/about/">About</a> <a class="sidebar-nav-item" href="/fiveseconds/">Five Seconds</a> <span class="sidebar-nav-item">Currently v1.0.0</span></nav><div class="sidebar-item"><p>&copy; 2014. All rights reserved.</p></div></div><div class="wrap"><div class="masthead well shadow-z-2"><div class="container"><h3 class="masthead-title"><a href="/" title="Home">Ali Connors</a> <small>Geek reveries</small></h3></div></div><div class="container content"><div class="posts"><div class="well shadow-z-2 post"><h1 class="post-title"><a href="/about/2014/12/16/introducing-five-seconds/">Introducing Five Seconds</a></h1><span class="post-date">16 Dec 2014</span><h2>So I created a new page</h2><p>It&#39;s called <strong>Five Seconds</strong>, and it is a list of snippets that I find while trying to solve everyday problems.</p><p>You can access that page via the sidebar or directly from <a href="/fiveseconds">here</a>.</p></div><div class="well shadow-z-2 post"><h1 class="post-title"><a href="/about/2014/12/15/grunt-and-bower-ftw/">Grunt and Bower ftw</a></h1><span class="post-date">15 Dec 2014</span><p class="message">Over the weekend, I switched from the original jekyll build of the site to a new workflow using <em>bower</em> and <em>grunt</em>.</p><p>The original jekyll building process is cool, but it lacks a few things to make it really unforgettable. After playing around a bit with <em>liquid</em> tags to add some features to my pages, I thought I might need a bit more flexibility with dependency management and building / deploying.</p><p>To achieve that, here are the new features I have added:</p><ol><li>No github building of my jekyll. Only the compiled site is available on the repo&#39;s <code>master</code> branch.</li><li>Better dependency management with <code>bower</code>.</li><li>A new building and serving process using Grunt.</li><li>A couple of lesser features that are more the results of my messing around with the code than anything else:<ul><li>Custom, per post scripts using Front Matter declarations. For example, this post includes a script named <code>bowergrunt.js</code>.</li><li>Ability to choose which bower dependencies are injected in a page. This post uses the <span data-d3="1">d3</span> <span data-d3="2">library</span> for example (These insanely well chosen colors are &quot;roboto&quot; and &quot;fedora&quot; from <a href="bada55.io">bada55.io</a>).</li><li>Only posts with the <code>published: true</code> property in their Front Matter declaration appear on the homepage. I&#39;m working on a way to completely disable unpublished posts from my building process soon.</li></ul></li></ol><p>I&#39;ll be posting a comprehensive tutorial explaining how I got all this to work soon. In the meantime, know that it was largely inspired by the process described by <a href="www.aymerick.com">Aymerick</a> on this <a href="http://www.aymerick.com/2014/07/22/jekyll-github-pages-bower-bootstrap.html">blog post</a>.</p><p>Oh yeah, and I messed around with <a href="http://fezvrasta.github.io/bootstrap-material-design/">Bootstrap Material Design</a> a little. I don&#39;t know if I&#39;ll keep it or not.</p></div><div class="well shadow-z-2 post"><h1 class="post-title"><a href="/code/grails/2014/12/11/integration-testing-in-grails-a-few-notes/">Integration Testing in Grails - A few notes</a></h1><span class="post-date">11 Dec 2014</span><p class="message">Writing integration tests is sometimes pretty repetitive, especially if you have many domains that have custom CRUD methods. Here are a few snippets that I have found useful when creating <em>integration tests</em>.</p><p><em>These snippets will evolve with time, as I write more and more tests.</em></p><h2>Lists</h2><h3>size</h3><p>This requires a bit of logic to understand, but the idea is to verify that the list size is the minimum between the maximum size (set in <code>params</code> or as a default value) and the total number of domain objects <em>minus</em> the offset parameter (if it exists).</p><div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="k">assert</span> <span class="n">controller</span><span class="o">.</span><span class="na">modelAndView</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">domainList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">Domain</span><span class="o">.</span><span class="na">count</span><span class="o">()</span> <span class="o">-</span> <span class="o">(</span><span class="n">controller</span><span class="o">.</span><span class="na">params</span><span class="o">.</span><span class="na">offset</span><span class="o">?</span> <span class="n">controller</span><span class="o">.</span><span class="na">params</span><span class="o">.</span><span class="na">offset</span> <span class="o">:</span> <span class="mi">0</span><span class="o">),</span> <span class="n">controller</span><span class="o">.</span><span class="na">params</span><span class="o">.</span><span class="na">max</span><span class="o">?</span> <span class="n">controller</span><span class="o">.</span><span class="na">params</span><span class="o">.</span><span class="na">max</span> <span class="o">:</span> <span class="mi">10</span><span class="o">)</span>
-</code></pre></div><p class="description">Verify the list size, no matter what the offset or max, no matter what the number of domain objects</p><h3>id sorting</h3><div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// Check that the list is sorted by id if it isn&#39;t empty</span>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <!-- Analytics meta-tags -->
+  
+    <meta name="description" content="A software and web development blog. By Marc du Boucheron" />
+  
+
+  
+
+  <title>
+    
+      Ali Connors &middot; Geek reveries
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/aliconnors.min.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700|PT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p>A place where things about software and web development are written. By <a href="http://twitter.com/MonsieurCelsius">Sir Celsius</a></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item active" href="/">Home</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">About</a>
+        
+      
+    
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/fiveseconds/">Five Seconds</a>
+        
+      
+    
+      
+        
+      
+    
+    <span class="sidebar-nav-item">Currently v1.0.0</span>
+  </nav>
+
+  <div class="sidebar-item">
+    <p>
+      &copy; 2014. All rights reserved.
+    </p>
+  </div>
+</div>
+
+
+    <!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+    <div class="wrap">
+      <div class="masthead well shadow-z-2">
+        <div class="container">
+          <h3 class="masthead-title">
+            <a href="/" title="Home">Ali Connors</a>
+            <small>Geek reveries</small>
+          </h3>
+        </div>
+      </div>
+
+      <div class="container content">
+        <div class="posts">
+  
+  
+  <div class="well shadow-z-2 post">
+    <h1 class="post-title">
+      <a href="/about/2014/12/16/introducing-five-seconds/">
+        Introducing Five Seconds
+      </a>
+    </h1>
+
+    <span class="post-date">16 Dec 2014</span>
+
+    <h2>So I created a new page</h2>
+
+<p>It&#39;s called <strong>Five Seconds</strong>, and it is a list of snippets that I find while trying to solve everyday problems.</p>
+
+<p>You can access that page via the sidebar or directly from <a href="/fiveseconds">here</a>.</p>
+
+  </div>
+  
+  
+  
+  
+  
+  <div class="well shadow-z-2 post">
+    <h1 class="post-title">
+      <a href="/about/2014/12/15/grunt-and-bower-ftw/">
+        Grunt and Bower ftw
+      </a>
+    </h1>
+
+    <span class="post-date">15 Dec 2014</span>
+
+    <p class="message">Over the weekend, I switched from the original jekyll build of the site to a new workflow using <em>bower</em> and <em>grunt</em>.</p>
+
+<p>The original jekyll building process is cool, but it lacks a few things to make it really unforgettable. After playing around a bit with <em>liquid</em> tags to add some features to my pages, I thought I might need a bit more flexibility with dependency management and building / deploying.</p>
+
+<p>To achieve that, here are the new features I have added:</p>
+
+<ol>
+<li>No github building of my jekyll. Only the compiled site is available on the repo&#39;s <code>master</code> branch.</li>
+<li>Better dependency management with <code>bower</code>.</li>
+<li>A new building and serving process using Grunt.</li>
+<li>A couple of lesser features that are more the results of my messing around with the code than anything else:
+
+<ul>
+<li>Custom, per post scripts using Front Matter declarations. For example, this post includes a script named <code>bowergrunt.js</code>.</li>
+<li>Ability to choose which bower dependencies are injected in a page. This post uses the <span data-d3="1">d3</span> <span data-d3="2">library</span> for example (These insanely well chosen colors are &quot;roboto&quot; and &quot;fedora&quot; from <a href="http://www.bada55.io">bada55.io</a>).</li>
+<li>Only posts with the <code>published: true</code> property in their Front Matter declaration appear on the homepage. I&#39;m working on a way to completely disable unpublished posts from my building process soon.</li>
+</ul></li>
+</ol>
+
+<p>I&#39;ll be posting a comprehensive tutorial explaining how I got all this to work soon. In the meantime, know that it was largely inspired by the process described by <a href="http://www.aymerick.com">Aymerick</a> on this <a href="http://www.aymerick.com/2014/07/22/jekyll-github-pages-bower-bootstrap.html">blog post</a>.</p>
+
+<p>Oh yeah, and I messed around with <a href="http://fezvrasta.github.io/bootstrap-material-design/">Bootstrap Material Design</a> a little. I don&#39;t know if I&#39;ll keep it or not.</p>
+
+  </div>
+  
+  
+  
+  <div class="well shadow-z-2 post">
+    <h1 class="post-title">
+      <a href="/code/grails/2014/12/11/integration-testing-in-grails-a-few-notes/">
+        Integration Testing in Grails - A few notes
+      </a>
+    </h1>
+
+    <span class="post-date">11 Dec 2014</span>
+
+    <p class="message">Writing integration tests is sometimes pretty repetitive, especially if you have many domains that have custom CRUD methods. Here are a few snippets that I have found useful when creating <em>integration tests</em>.</p>
+
+<p><em>These snippets will evolve with time, as I write more and more tests.</em></p>
+
+<h2>Lists</h2>
+
+<h3>size</h3>
+
+<p>This requires a bit of logic to understand, but the idea is to verify that the list size is the minimum between the maximum size (set in <code>params</code> or as a default value) and the total number of domain objects <em>minus</em> the offset parameter (if it exists).</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="k">assert</span> <span class="n">controller</span><span class="o">.</span><span class="na">modelAndView</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">domainList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">Domain</span><span class="o">.</span><span class="na">count</span><span class="o">()</span> <span class="o">-</span> <span class="o">(</span><span class="n">controller</span><span class="o">.</span><span class="na">params</span><span class="o">.</span><span class="na">offset</span><span class="o">?</span> <span class="n">controller</span><span class="o">.</span><span class="na">params</span><span class="o">.</span><span class="na">offset</span> <span class="o">:</span> <span class="mi">0</span><span class="o">),</span> <span class="n">controller</span><span class="o">.</span><span class="na">params</span><span class="o">.</span><span class="na">max</span><span class="o">?</span> <span class="n">controller</span><span class="o">.</span><span class="na">params</span><span class="o">.</span><span class="na">max</span> <span class="o">:</span> <span class="mi">10</span><span class="o">)</span>
+</code></pre></div>
+<p class="description">Verify the list size, no matter what the offset or max, no matter what the number of domain objects</p>
+
+<h3>id sorting</h3>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// Check that the list is sorted by id if it isn&#39;t empty</span>
 <span class="c1">// This all seems a bit complicated but it is necessary as it is totally</span>
 <span class="c1">// independant of the number of Domain that currently exist</span>
 <span class="kt">def</span> <span class="n">id</span> <span class="o">=</span> <span class="mi">1</span>
@@ -16,19 +204,144 @@
     <span class="k">assert</span> <span class="n">controller</span><span class="o">.</span><span class="na">modelAndView</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">domainList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">==</span> <span class="n">domain</span>
   <span class="o">}</span>
 <span class="o">}</span>
-</code></pre></div><p class="description">This also works whatever the offset, max or number of domain objects. How cool is that?</p><p>This might seem a bit overkill upon reading it for the first time, but as it turns out, when testing large applications that have many dependencies between their different domains, with tests for domain <code>A</code> calling CRUD methods on domain <code>B</code> objects, being able to test domain <code>B</code> without knowing the <em>actual</em> number of objects that exist is paramount. There&#39;s nothing more annoying than writing a test that does something like the following and having to refactor it every day because some other test has added or removed objects:</p><div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="k">assert</span> <span class="n">controller</span><span class="o">.</span><span class="na">modelAndView</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">domainList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="n">Domain</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">42</span><span class="o">)</span>
-</code></pre></div><p class="description">The meh test case that is sure to break</p><h2>i18n messages</h2><blockquote><p>This assumes that your messages are present in your <code>message_fr.properties</code>. It doesn&#39;t have to be french though, I&#39;ll allow it.</p></blockquote><p>The testing process is separated in two parts: <strong>setting the request locale</strong> so that the tested method knows which message it should get, and <strong>testing the returned message</strong> to make sure that the method gets the correct value.</p><h3>Setting the request locale</h3><blockquote><p>Setting the locale can be done either globally for the entire test class or locally for a single method. Although I generally try to set my parameters locally, messages aren&#39;t <em>that</em> important, so I go with the first option</p></blockquote><div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// the messageSource service needs to be injected</span>
+</code></pre></div>
+<p class="description">This also works whatever the offset, max or number of domain objects. How cool is that?</p>
+
+<p>This might seem a bit overkill upon reading it for the first time, but as it turns out, when testing large applications that have many dependencies between their different domains, with tests for domain <code>A</code> calling CRUD methods on domain <code>B</code> objects, being able to test domain <code>B</code> without knowing the <em>actual</em> number of objects that exist is paramount. There&#39;s nothing more annoying than writing a test that does something like the following and having to refactor it every day because some other test has added or removed objects:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="k">assert</span> <span class="n">controller</span><span class="o">.</span><span class="na">modelAndView</span><span class="o">.</span><span class="na">model</span><span class="o">.</span><span class="na">domainList</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">)</span> <span class="o">==</span> <span class="n">Domain</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">42</span><span class="o">)</span>
+</code></pre></div>
+<p class="description">The meh test case that is sure to break</p>
+
+<h2>i18n messages</h2>
+
+<blockquote>
+<p>This assumes that your messages are present in your <code>message_fr.properties</code>. It doesn&#39;t have to be french though, I&#39;ll allow it.</p>
+</blockquote>
+
+<p>The testing process is separated in two parts: <strong>setting the request locale</strong> so that the tested method knows which message it should get, and <strong>testing the returned message</strong> to make sure that the method gets the correct value.</p>
+
+<h3>Setting the request locale</h3>
+
+<blockquote>
+<p>Setting the locale can be done either globally for the entire test class or locally for a single method. Although I generally try to set my parameters locally, messages aren&#39;t <em>that</em> important, so I go with the first option</p>
+</blockquote>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="c1">// the messageSource service needs to be injected</span>
 <span class="kt">def</span> <span class="n">messageSource</span>
 
 <span class="kt">void</span> <span class="nf">setUp</span><span class="o">(){</span>
   <span class="n">controller</span><span class="o">.</span><span class="na">request</span><span class="o">.</span><span class="na">addPreferredLocale</span><span class="o">(</span><span class="k">new</span> <span class="n">Locale</span><span class="o">(</span><span class="s2">&quot;fr&quot;</span><span class="o">))</span>
 <span class="o">}</span>
-</code></pre></div><p class="description">Set the request locale for the whole test class. Easy.</p><h3>Testing the returned messages</h3><p>Supposing you are testing a controller that render an i18n message in <code>flash.message</code>, you can test the message value the following way:</p><div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="k">assert</span> <span class="n">controller</span><span class="o">.</span><span class="na">flash</span><span class="o">.</span><span class="na">message</span> <span class="o">==</span> <span class="n">messageSource</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(</span><span class="s2">&quot;your.message.label&quot;</span><span class="o">,</span> <span class="o">[</span><span class="n">your</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">args</span><span class="o">]</span> <span class="k">as</span> <span class="n">Object</span><span class="o">[],</span> <span class="n">controller</span><span class="o">.</span><span class="na">request</span><span class="o">.</span><span class="na">getLocale</span><span class="o">())</span>
-</code></pre></div><p class="description">Get a message in an integration test class</p><p>Let&#39;s cut that line in smaller pieces so as to better understand it.</p><p>We are calling the <code>org.springframework.context.messageSource.getMessage(String code, Object[] args, Locale locale)</code> (javadoc <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/MessageSource.html#getMessage-java.lang.String-java.lang.Object:A-java.util.Locale-">here</a>) method. The docs are pretty clear as to what this method does:</p><blockquote><p>Try to resolve the message. Treat as an error if the message can&#39;t be found.</p></blockquote><p class="description">Ok Spring, I get it.</p><p>The arguments we are passing to this method are the following:</p><ol><li>Your message&#39;s code. <em>Meh</em></li><li>Your message arguments, <code>as Object[]</code>. The casting is important here, or else you&#39;ll get nasty <code>groovy.lang.MissingMethodException</code> messages when running your tests, and they will fail. If the message you are testing doesn&#39;t take any argument, just go full badass style and set that to <code>null</code>.</li><li>Your <code>controller.request</code>&#39;s <code>Locale</code> which we set earlier. Just like for the arguments, if you feel like testing the default <code>Locale</code>, set this to <code>null</code>.</li></ol><p>This pretty cool snippet was originally given as an <a href="http://stackoverflow.com/a/27190531/3465375">answer</a> to one of my questions on stackoverflow. I have been using it ever since. Very love. Many useful. Wow.</p></div><div class="well shadow-z-2 post"><h1 class="post-title"><a href="/git/2014/12/10/mac-os-x-case-senitivity-and-git/">Mac OS X case sensitivity and git</a></h1><span class="post-date">10 Dec 2014</span><p class="message">I love my new macbook. Just about as much as I hate it.</p><p>I recently bought a Macbook Pro because I had grown tired of my almost three years old and shitty - because I used it a lot, not because it was in the first place - HP Elitebook. I had been thinking about it for a while and I must say I am qui impressed. It is light and quick but most of all I love the fact that I found a *nix like terminal and general file structure. It feels right at home! I&#39;ll still install fedora soon enough because I can, but hey, it&#39;s been a week and I still haven&#39;t, who would have thought?</p><p>There is one thing that made me really mad though: the case insensitivity of the <a href="http://en.wikipedia.org/wiki/Hierarchical_File_System">HFS+ File System</a>. I mean seriously, where the fuck does that come from anyway? Why would anyone want that? The regular users wouldn&#39;t notice anything if it were different, and the more advanced users would never have problems similar to what I&#39;ll describe below.</p><p><img src="public/img/wtf.jpg" alt="Seriously Apple?"></p><h2>The git problem</h2><p>Sometimes, because of that case insensitivity, versioning systems - meaning git - get messed up pretty badly.</p><p>What happened to me was pretty insanely time consuming and enraging. Let&#39;s assume my git repo was in the following state:</p><ul><li>I had a file named <code>Foo.jpg</code> in my project, and I was working on branch <code>A</code>. The <code>Foo.jpg</code> file was not really my concern as it was an older file I had taken from the <code>master</code> branch earlier.</li><li>My coworker was working on branch <code>B</code>. He <em>deleted</em> <code>Foo.jpg</code> and created a new file in the same location named <code>foo.jpg</code>.</li><li>All my changes on branch <code>A</code> were commited, running <code>git status</code> showed me no changed files.</li></ul><p>However, whenever I tried to run <code>git checkout B</code>, the command failed with the following output:</p><div class="highlight"><pre><code class="language-bash" data-lang="bash">error: The following untracked working tree files would be overwritten by checkout:
+</code></pre></div>
+<p class="description">Set the request locale for the whole test class. Easy.</p>
+
+<h3>Testing the returned messages</h3>
+
+<p>Supposing you are testing a controller that render an i18n message in <code>flash.message</code>, you can test the message value the following way:</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="k">assert</span> <span class="n">controller</span><span class="o">.</span><span class="na">flash</span><span class="o">.</span><span class="na">message</span> <span class="o">==</span> <span class="n">messageSource</span><span class="o">.</span><span class="na">getMessage</span><span class="o">(</span><span class="s2">&quot;your.message.label&quot;</span><span class="o">,</span> <span class="o">[</span><span class="n">your</span><span class="o">,</span> <span class="n">message</span><span class="o">,</span> <span class="n">args</span><span class="o">]</span> <span class="k">as</span> <span class="n">Object</span><span class="o">[],</span> <span class="n">controller</span><span class="o">.</span><span class="na">request</span><span class="o">.</span><span class="na">getLocale</span><span class="o">())</span>
+</code></pre></div>
+<p class="description">Get a message in an integration test class</p>
+
+<p>Let&#39;s cut that line in smaller pieces so as to better understand it.</p>
+
+<p>We are calling the <code>org.springframework.context.messageSource.getMessage(String code, Object[] args, Locale locale)</code> (javadoc <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/context/MessageSource.html#getMessage-java.lang.String-java.lang.Object:A-java.util.Locale-">here</a>) method. The docs are pretty clear as to what this method does:</p>
+
+<blockquote>
+<p>Try to resolve the message. Treat as an error if the message can&#39;t be found.</p>
+</blockquote>
+
+<p class="description">Ok Spring, I get it.</p>
+
+<p>The arguments we are passing to this method are the following:</p>
+
+<ol>
+<li>Your message&#39;s code. <em>Meh</em></li>
+<li>Your message arguments, <code>as Object[]</code>. The casting is important here, or else you&#39;ll get nasty <code>groovy.lang.MissingMethodException</code> messages when running your tests, and they will fail. If the message you are testing doesn&#39;t take any argument, just go full badass style and set that to <code>null</code>.</li>
+<li>Your <code>controller.request</code>&#39;s <code>Locale</code> which we set earlier. Just like for the arguments, if you feel like testing the default <code>Locale</code>, set this to <code>null</code>.</li>
+</ol>
+
+<p>This pretty cool snippet was originally given as an <a href="http://stackoverflow.com/a/27190531/3465375">answer</a> to one of my questions on stackoverflow. I have been using it ever since. Very love. Many useful. Wow. </p>
+
+  </div>
+  
+  
+  
+  <div class="well shadow-z-2 post">
+    <h1 class="post-title">
+      <a href="/git/2014/12/10/mac-os-x-case-senitivity-and-git/">
+        Mac OS X case sensitivity and git
+      </a>
+    </h1>
+
+    <span class="post-date">10 Dec 2014</span>
+
+    <p class="message">I love my new macbook. Just about as much as I hate it.</p>
+
+<p>I recently bought a Macbook Pro because I had grown tired of my almost three years old and shitty - because I used it a lot, not because it was in the first place - HP Elitebook. I had been thinking about it for a while and I must say I am qui impressed. It is light and quick but most of all I love the fact that I found a *nix like terminal and general file structure. It feels right at home! I&#39;ll still install fedora soon enough because I can, but hey, it&#39;s been a week and I still haven&#39;t, who would have thought?</p>
+
+<p>There is one thing that made me really mad though: the case insensitivity of the <a href="http://en.wikipedia.org/wiki/Hierarchical_File_System">HFS+ File System</a>. I mean seriously, where the fuck does that come from anyway? Why would anyone want that? The regular users wouldn&#39;t notice anything if it were different, and the more advanced users would never have problems similar to what I&#39;ll describe below.</p>
+
+<p><img src="public/img/wtf.jpg" alt="Seriously Apple?"></p>
+
+<h2>The git problem</h2>
+
+<p>Sometimes, because of that case insensitivity, versioning systems - meaning git - get messed up pretty badly. </p>
+
+<p>What happened to me was pretty insanely time consuming and enraging. Let&#39;s assume my git repo was in the following state:</p>
+
+<ul>
+<li>I had a file named <code>Foo.jpg</code> in my project, and I was working on branch <code>A</code>. The <code>Foo.jpg</code> file was not really my concern as it was an older file I had taken from the <code>master</code> branch earlier.</li>
+<li>My coworker was working on branch <code>B</code>. He <em>deleted</em> <code>Foo.jpg</code> and created a new file in the same location named <code>foo.jpg</code>.</li>
+<li>All my changes on branch <code>A</code> were commited, running <code>git status</code> showed me no changed files.</li>
+</ul>
+
+<p>However, whenever I tried to run <code>git checkout B</code>, the command failed with the following output:</p>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">error: The following untracked working tree files would be overwritten by checkout:
     foo.bar
 Please move or remove them before you can switch branches.
 Aborting
-</code></pre></div><p>What this message means is that when git tried to put the <code>foo.jpg</code> file from the <code>B</code> branch in my file system, it found that the file already existed in the working tree under <code>Foo.jpg</code> - because for the OSX File System, they are the same files - although it had not been added to the tracked files - because for git, <code>Foo.jpg</code> is not the same thing as <code>foo.jpg</code>.</p><p>At this point, you&#39;re probably thinking something similar to what I thought at the time this first happened to me:</p><p><img src="public/img/wtf2.jpg" alt="I have no idea what's happening"></p><p class="description">wtf OSX?</p><h2>The non solution</h2><p>I started derping around on the internets to find out how to solve that problem. I found a <a href="http://stackoverflow.com/questions/4858047/git-error-the-following-untracked-working-tree-files-would-be-overwritten-by-ch">lot</a> <a href="http://stackoverflow.com/a/14283695/3465375">of</a> <a href="http://stackoverflow.com/a/23960663/3465375">things</a> on stackoverflow that try to explain the problem and give different workarounds.</p><p>It seems the accepted solution to this known problem is to set the git <code>ignorecase</code> option to <code>true</code>. Once again, I don&#39;t believe this is a <em>good</em> solution, or even a <em>solution</em>. I don&#39;t want my git to ignore case. I don&#39;t want it to consider <code>Foo.jpg</code> the same as <code>foo.jpg</code>. What if one day I decide I want to keep both files?</p><p>Another way of working around the problem that I found was to use a combination of <code>git mv</code> commands to rename the files letting git know they were changed. While this is a <em>more acceptable</em> solution, it doesn&#39;t answer my needs. I want this problem to <em>not happen anymore</em>.</p><p>At the moment I am considering creating a partition on my hard drive to store my git projects - but of course Yosemite makes it hard to shrink the current partition I have in order to create a new one. So much for the out of the box experience.</p><p>I hate my Mac.</p></div></div><div class="pagination"><a class="pagination-item older" href="/page2">Older</a> <span class="pagination-item newer">Newer</span></div></div></div><label for="sidebar-checkbox" class="sidebar-toggle"></label><script>(function(document) {
+</code></pre></div>
+<p>What this message means is that when git tried to put the <code>foo.jpg</code> file from the <code>B</code> branch in my file system, it found that the file already existed in the working tree under <code>Foo.jpg</code> - because for the OSX File System, they are the same files - although it had not been added to the tracked files - because for git, <code>Foo.jpg</code> is not the same thing as <code>foo.jpg</code>.</p>
+
+<p>At this point, you&#39;re probably thinking something similar to what I thought at the time this first happened to me:</p>
+
+<p><img src="public/img/wtf2.jpg" alt="I have no idea what's happening">
+<p class="description">wtf OSX?</p></p>
+
+<h2>The non solution</h2>
+
+<p>I started derping around on the internets to find out how to solve that problem. I found a <a href="http://stackoverflow.com/questions/4858047/git-error-the-following-untracked-working-tree-files-would-be-overwritten-by-ch">lot</a> <a href="http://stackoverflow.com/a/14283695/3465375">of</a> <a href="http://stackoverflow.com/a/23960663/3465375">things</a> on stackoverflow that try to explain the problem and give different workarounds.</p>
+
+<p>It seems the accepted solution to this known problem is to set the git <code>ignorecase</code> option to <code>true</code>. Once again, I don&#39;t believe this is a <em>good</em> solution, or even a <em>solution</em>. I don&#39;t want my git to ignore case. I don&#39;t want it to consider <code>Foo.jpg</code> the same as <code>foo.jpg</code>. What if one day I decide I want to keep both files?</p>
+
+<p>Another way of working around the problem that I found was to use a combination of <code>git mv</code> commands to rename the files letting git know they were changed. While this is a <em>more acceptable</em> solution, it doesn&#39;t answer my needs. I want this problem to <em>not happen anymore</em>.</p>
+
+<p>At the moment I am considering creating a partition on my hard drive to store my git projects - but of course Yosemite makes it hard to shrink the current partition I have in order to create a new one. So much for the out of the box experience. </p>
+
+<p>I hate my Mac.</p>
+
+  </div>
+  
+  
+</div>
+
+<div class="pagination">
+  
+    <a class="pagination-item older" href="/page2">Older</a>
+  
+  
+    <span class="pagination-item newer">Newer</span>
+  
+</div>
+
+
+      </div>
+    </div>
+
+    <label for="sidebar-checkbox" class="sidebar-toggle"></label>
+    
+    
+    <script>
+      (function(document) {
         var toggle = document.querySelector('.sidebar-toggle');
         var sidebar = document.querySelector('#sidebar');
         var checkbox = document.querySelector('#sidebar-checkbox');
@@ -51,4 +364,8 @@ Aborting
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-47088191-3', 'auto');
-      ga('send', 'pageview');</script></body></html>
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>
