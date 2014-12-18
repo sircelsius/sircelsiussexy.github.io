@@ -5,7 +5,13 @@
     <span class="o">}</span>
   <span class="o">]</span>
 <span class="o">}</span>
-</code></pre></div><p><small>Source and explanation on <a href="http://stackoverflow.com/a/11725359/3465375">stackoverflow</a>.</small></p></div></div></div></div></div><label for="sidebar-checkbox" class="sidebar-toggle"></label><script>(function(document) {
+</code></pre></div><p><small>Source and explanation on <a href="http://stackoverflow.com/a/11725359/3465375">stackoverflow</a>.</small></p></div><div class="well shadow-z-2 post"><h1 class="post-title"><a href="/5s/grails/2014/12/18/5s--correct-way-to-test-for-validation-errors-in-grails-unit-tests/">5s - Correct way to test for validation errors in Grails Unit Tests</a></h1><span class="post-date">18 Dec 2014</span><div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">domain</span><span class="o">.</span><span class="na">clearErrors</span><span class="o">()</span>
+
+<span class="c1">// set your params, mock what you need to mock</span>
+<span class="c1">// and call the tested method</span>
+
+<span class="k">assert</span> <span class="n">domain</span><span class="o">.</span><span class="na">hasErrors</span><span class="o">()</span>
+</code></pre></div><p>Docs: <a href="http://grails.org/doc/2.2.x/ref/Domain%20Classes/clearErrors.html"><code>clearErrors</code></a> and <a href="http://grails.org/doc/2.2.x/ref/Domain%20Classes/hasErrors.html"><code>hasErrors</code></a>.</p></div></div></div></div></div><label for="sidebar-checkbox" class="sidebar-toggle"></label><script>(function(document) {
         var toggle = document.querySelector('.sidebar-toggle');
         var sidebar = document.querySelector('#sidebar');
         var checkbox = document.querySelector('#sidebar-checkbox');

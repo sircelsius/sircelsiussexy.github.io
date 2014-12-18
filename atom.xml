@@ -4,13 +4,29 @@
  <title>Ali Connors</title>
  <link href="http://aliconnors.me/atom.xml" rel="self"/>
  <link href="http://aliconnors.me/"/>
- <updated>2014-12-17T15:29:21+01:00</updated>
+ <updated>2014-12-18T11:26:38+01:00</updated>
  <id>http://aliconnors.me</id>
  <author>
    <name>Marc Bramaud du Boucheron</name>
    <email>m.duboucheron@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>5s - Correct way to test for validation errors in Grails Unit Tests</title>
+   <link href="http://aliconnors.me/5s/grails/2014/12/18/5s--correct-way-to-test-for-validation-errors-in-grails-unit-tests/"/>
+   <updated>2014-12-18T00:00:00+01:00</updated>
+   <id>http://aliconnors.me/5s/grails/2014/12/18/5s--correct-way-to-test-for-validation-errors-in-grails-unit-tests</id>
+   <content type="html">&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;clearErrors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// set your params, mock what you need to mock&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// and call the tested method&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;assert&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;domain&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;hasErrors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Docs: &lt;a href=&quot;http://grails.org/doc/2.2.x/ref/Domain%20Classes/clearErrors.html&quot;&gt;&lt;code&gt;clearErrors&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;http://grails.org/doc/2.2.x/ref/Domain%20Classes/hasErrors.html&quot;&gt;&lt;code&gt;hasErrors&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Introducing Five Seconds</title>
