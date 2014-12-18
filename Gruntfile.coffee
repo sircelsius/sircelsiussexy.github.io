@@ -81,6 +81,9 @@ module.exports = (grunt) ->
           "*.md"
         ]
         tasks: [
+          "clean"
+          "copy"
+          "cssmin"
           "exec:jekyll"
           "htmlmin"
         ]
