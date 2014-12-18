@@ -6,7 +6,8 @@ title: Five Seconds
 <p>Sometimes, a long blog post isn't needed to understand a short bit of code. These 5s posts are a few of these little snippets that I find to be useful from time to time.</p>
 
 <div class="posts">
-  {% for post in site.posts %}
+  {% assign sorted_posts = (site.posts | sort: "date") %}
+  {% for post in sorted_posts %}
     {% if post.published == true and post.fivesecond == true %}
       <div class="well shadow-z-2 post">
         <h1 class="post-title">

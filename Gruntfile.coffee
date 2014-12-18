@@ -82,6 +82,7 @@ module.exports = (grunt) ->
         ]
         tasks: [
           "exec:jekyll"
+          "htmlmin"
         ]
 
     connect:
