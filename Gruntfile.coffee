@@ -11,6 +11,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-contrib-cssmin"
   grunt.loadNpmTasks "grunt-contrib-clean"
   grunt.loadNpmTasks "grunt-contrib-htmlmin"
+  grunt.loadNpmTasks "grunt-uncss"
 
   grunt.initConfig
 
@@ -41,6 +42,13 @@ module.exports = (grunt) ->
           src: "material.js"
           dest: "vendor/js/"
         }]
+      bootstrap:
+        files: [{
+          expand: true
+          cwd: "bower_components/bootstrap/dist/css/"
+          src: "bootstrap.css"
+          dest: "vendor/css"
+        }]
       d3:
         files: [{
           expand: true
@@ -52,14 +60,26 @@ module.exports = (grunt) ->
     cssmin:
       combine:
         files:
-          "public/css/aliconnors.min.css" : [
+          "_site/public/css/aliconnors.min.css" : [
             "public/css/lanyon.css",
             "public/css/poole.css",
-            "vendor/css/*.css"
+            "vendor/bootstrap.css"
+            "vendor/css/material.css",
+            "vendor/css/material.css.map",
             "public/css/aliconnors.css"
           ]
+      postuncss:
+        files:
+          "_site/public/css/aliconnors.min.css" : [
+            "_site/public/css/aliconnors.uncss.css"
+          ]
 
-    clean: ["public/css/aliconnors.min.css", "vendor/css/*.css"]    
+    clean: ["public/css/aliconnors.min.css", "vendor/css/*.css"]
+
+    uncss:
+      dist:
+        files:
+          "_site/public/css/aliconnors.uncss.css" : ["_site/*.html"]
 
     exec:
       jekyll:
@@ -83,7 +103,9 @@ module.exports = (grunt) ->
         tasks: [
           "clean"
           "copy"
-          "cssmin"
+          "cssmin:combine"
+          "uncss"
+          "cssmin:postuncss"
           "exec:jekyll"
           "htmlmin"
         ]
@@ -109,9 +131,11 @@ module.exports = (grunt) ->
 
   grunt.registerTask "build", [
     "clean"
-    "copy"
-    "cssmin"
     "exec:jekyll"
+    "copy"
+    "cssmin:combine"
+    "uncss"
+    "cssmin:postuncss"
     "htmlmin"
   ]
 

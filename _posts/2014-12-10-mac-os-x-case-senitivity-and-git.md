@@ -12,7 +12,7 @@ I recently bought a Macbook Pro because I had grown tired of my almost three yea
 
 There is one thing that made me really mad though: the case insensitivity of the [HFS+ File System](http://en.wikipedia.org/wiki/Hierarchical_File_System). I mean seriously, where the fuck does that come from anyway? Why would anyone want that? The regular users wouldn't notice anything if it were different, and the more advanced users would never have problems similar to what I'll describe below.
 
-<img src="public/img/wtf.jpg" alt="Seriously Apple?">
+<img src="{{site.baseurl}}public/img/wtf.jpg" alt="Seriously Apple?">
 
 ## The git problem
 
@@ -37,7 +37,7 @@ What this message means is that when git tried to put the `foo.jpg` file from th
 
 At this point, you're probably thinking something similar to what I thought at the time this first happened to me:
 
-<img src="public/img/wtf2.jpg" alt="I have no idea what's happening">
+<img src="{{site.baseurl}}public/img/wtf2.jpg" alt="I have no idea what's happening">
 <p class="description">wtf OSX?</p>
 
 ## The non solution
