@@ -1,3 +1,9 @@
+/* Make the font family Roboto */
+body{
+  font-family: "RobotoDraft", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
 @media(min-width: 768px){
   .post{
     margin-left: -2rem;

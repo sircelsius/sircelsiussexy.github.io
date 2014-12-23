@@ -1,0 +1,508 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"boots",
+				"bootstrap"
+			],
+			[
+				"boot",
+				"bootstrap"
+			],
+			[
+				"lo",
+				"loadNpmTasks"
+			],
+			[
+				"html",
+				"htmlmin"
+			],
+			[
+				"bootstrap-material",
+				"bootstrap-material-design"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"bra",
+				"border-radius"
+			],
+			[
+				"te",
+				"text-align"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "_posts/2014-12-16-5s--mocking-grails-listparams-using-metaclass.md",
+			"settings":
+			{
+				"buffer_size": 519,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Gruntfile.coffee",
+			"settings":
+			{
+				"buffer_size": 3326,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 1041,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/css/aliconnors.css",
+			"settings":
+			{
+				"buffer_size": 428,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "vendor/css/bootstrap.css",
+			"settings":
+			{
+				"buffer_size": 137067,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 87.0,
+		"selected_items":
+		[
+			[
+				"close",
+				"Project: Close"
+			],
+			[
+				"post",
+				"Jekyll: New post"
+			],
+			[
+				"new",
+				"Jekyll: New post"
+			],
+			[
+				"set je",
+				"Set Syntax: Textile (Jekyll)"
+			],
+			[
+				"set html",
+				"Set Syntax: HTML"
+			],
+			[
+				"new ",
+				"Jekyll: New post"
+			],
+			[
+				"add f",
+				"Project: Add Folder"
+			],
+			[
+				"newpo",
+				"Jekyll: New post"
+			],
+			[
+				"new pos",
+				"Jekyll: New post"
+			],
+			[
+				"set co",
+				"Set Syntax: CoffeeScript"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"sideba",
+				"View: Toggle Side Bar"
+			],
+			[
+				"proj",
+				"Project: Save As"
+			],
+			[
+				"add",
+				"Project: Add Folder"
+			],
+			[
+				"promo",
+				"Jekyll: Promote draft to post..."
+			],
+			[
+				"jekyll",
+				"Jekyll: Promote draft to post..."
+			],
+			[
+				"save",
+				"Project: Save As"
+			],
+			[
+				"clos",
+				"Project: Close"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"pref",
+				"Preferences: Settings - User"
+			],
+			[
+				"ssm",
+				"Set Syntax: Markdown Extended"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 444.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/vendor/css/material.css",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_site/public/css/aliconnors.min.css",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-16-introducing-five-seconds.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/bower_components/bootstrap-material-design/dist/css/material.css",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_site/index.html",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_includes/head.html",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-15-integration-testing-in-grails--redirection.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-15-grunt-and-bower-ftw.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-18-5s--correct-way-to-test-for-validation-errors-in-grails-unit-tests.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-10-mac-os-x-case-senitivity-and-git.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/index.html",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/fiveseconds.html",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_layouts/post.html",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-11-integration-testing-in-grails-a-few-notes.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-10-29-merging-lanyons-stylesheets-with-your-own.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-10-28-modifying-the-bootstrap-dropdown-on-scroll.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-10-28-a-little-something-about-anchors-without-href.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-10-14-ahoy.markdown",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_config.yml",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-16-unit-test-in-grails--a-few-notes.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-17-how-the-building-of-this-website-has-evolved-recently.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/Gruntfile.coffee",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/public/css/aliconnors.min.css",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/package.json",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/public/css/aliconnors.css",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/public/css/aliconnors.release.css",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-16-5s--mocking-grails-listparams-using-metaclass.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_includes/sidebar.html",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/fiveseconds.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_layouts/default.html",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/bower.json",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/public/js/bowergrunt.js",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_layouts/page.html",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-14-test-grunt.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_data/shorturls.json",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/.gitignore",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_drafts/2014-12-11-integration-testing-in-grails-a-few-notes.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_drafts/2014-12-10-mac-os-x-case-senitivity-and-git.md",
+		"/Users/mduboucheron/Documents/travail/kazaden-doc/kazaden_doc_ip_20141208.md",
+		"/Users/mduboucheron/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"\n\"",
+			"font",
+			"38re",
+			".breadcrumb",
+			"bread",
+			":\n",
+			">\n",
+			"static",
+			"bootstrap",
+			"d1075",
+			"Mantis",
+			" \n",
+			"Mantis",
+			"IE11",
+			"IE 11"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"<span style=\"color: #1d1075;\">Mantis",
+			"IE"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "_posts/2014-12-16-5s--mocking-grails-listparams-using-metaclass.md",
+					"settings":
+					{
+						"buffer_size": 519,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								311,
+								311
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jekyll/Syntaxes/Markdown (Jekyll).tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Gruntfile.coffee",
+					"settings":
+					{
+						"buffer_size": 3326,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1905,
+								1955
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 44.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "index.html",
+					"settings":
+					{
+						"buffer_size": 1041,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								35,
+								35
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jekyll/Syntaxes/HTML (Jekyll).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "public/css/aliconnors.css",
+					"settings":
+					{
+						"buffer_size": 428,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								129,
+								129
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "vendor/css/bootstrap.css",
+					"settings":
+					{
+						"buffer_size": 137067,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								240,
+								244
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
