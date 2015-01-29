@@ -40,6 +40,17 @@
 	"buffers":
 	[
 		{
+			"contents": "#global module:false\n\n\"use strict\"\n\nmodule.exports = (grunt) ->\n  grunt.loadNpmTasks \"grunt-bower-task\"\n  grunt.loadNpmTasks \"grunt-contrib-connect\"\n  grunt.loadNpmTasks \"grunt-contrib-copy\"\n  grunt.loadNpmTasks \"grunt-contrib-watch\"\n  grunt.loadNpmTasks \"grunt-exec\"\n  grunt.loadNpmTasks \"grunt-contrib-cssmin\"\n  grunt.loadNpmTasks \"grunt-contrib-clean\"\n  grunt.loadNpmTasks \"grunt-contrib-htmlmin\"\n  grunt.loadNpmTasks \"grunt-uncss\"\n\n  grunt.initConfig\n\n    copy:\n      jquery:\n        files: [{\n          expand: true\n          cwd: \"bower_components/jquery/dist/\"\n          src: \"jquery.min.js\"\n          dest: \"vendor/js/\"\n        }]\n      bootstrapmaterial:\n        files: [{\n          expand: true\n          cwd: \"bower_components/bootstrap-material-design/dist/css/\"\n          src: \"material.css\"\n          dest: \"vendor/css/\"\n        },\n        {\n          expand: true\n          cwd: \"bower_components/bootstrap-material-design/dist/css/\"\n          src: \"material.css.map\"\n          dest: \"vendor/css/\"\n        },\n        {\n          expand: true\n          cwd: \"bower_components/bootstrap-material-design/dist/js/\"\n          src: \"material.js\"\n          dest: \"vendor/js/\"\n        }]\n      bootstrap:\n        files: [{\n          expand: true\n          cwd: \"bower_components/bootstrap/dist/css/\"\n          src: \"bootstrap.css\"\n          dest: \"vendor/css\"\n        }]\n      d3:\n        files: [{\n          expand: true\n          cwd: \"bower_components/d3/\"\n          src: \"d3.min.js\"\n          dest: \"vendor/js\"\n        }]\n\n    cssmin:\n      combine:\n        files:\n          \"_site/public/css/aliconnors.min.css\" : [\n            \"public/css/lanyon.css\",\n            \"public/css/poole.css\",\n            \"vendor/bootstrap.css\"\n            \"vendor/css/material.css\",\n            \"vendor/css/material.css.map\",\n            \"public/css/aliconnors.css\"\n          ]\n      postuncss:\n        files:\n          \"_site/public/css/aliconnors.min.css\" : [\n            \"_site/public/css/aliconnors.uncss.css\"\n          ]\n\n    clean: [\"public/css/aliconnors.min.css\", \"vendor/css/*.css\"]\n\n    uncss:\n      dist:\n        files:\n          \"_site/public/css/aliconnors.uncss.css\" : [\"_site/*.html\"]\n\n    exec:\n      jekyll:\n        cmd: \"jekyll build --trace\"\n\n    watch:\n      options:\n        livereload: true\n      source:\n        files: [\n          \"_drafts/**/*\"\n          \"_includes/**/*\"\n          \"_layouts/**/*\"\n          \"_posts/**/*\"\n          \"public/css/**/*\"\n          \"public/js/**/*\"\n          \"_config.yml\"\n          \"*.html\"\n          \"*.md\"\n        ]\n        tasks: [\n          \"clean\"\n          \"copy\"\n          \"cssmin:combine\"\n          \"uncss\"\n          \"cssmin:postuncss\"\n          \"exec:jekyll\"\n          \"htmlmin\"\n        ]\n\n    connect:\n      server:\n        options:\n          port: 4000\n          base: '_site'\n          livereload: true\n\n    htmlmin:\n      dist:\n        options:\n          removeComments: true,\n          collapseWhitespace: true\n        files: [{\n          expand: true,\n          cwd: \"_site\",\n          src: \"**/*.html\",\n          dest: \"_site\"\n        }]\n\n  grunt.registerTask \"build\", [\n    \"clean\"\n    \"exec:jekyll\"\n    \"copy\"\n    \"cssmin:combine\"\n    # \"uncss\"\n    # \"cssmin:postuncss\"\n    \"htmlmin\"\n  ]\n\n  grunt.registerTask \"serve\", [\n    \"build\"\n    \"connect:server\"\n    \"watch\"\n  ]\n\n  grunt.registerTask \"default\", [\n    \"serve\"\n  ]",
+			"file": "Gruntfile.coffee",
+			"file_size": 3383,
+			"file_write_time": 1419346156000000,
+			"settings":
+			{
+				"buffer_size": 3383,
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "_posts/2014-12-16-5s--mocking-grails-listparams-using-metaclass.md",
 			"settings":
 			{
@@ -48,10 +59,34 @@
 			}
 		},
 		{
-			"file": "Gruntfile.coffee",
+			"file": "_posts/2014-12-15-integration-testing-in-grails--redirection.md",
 			"settings":
 			{
-				"buffer_size": 3326,
+				"buffer_size": 811,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_includes/head.html",
+			"settings":
+			{
+				"buffer_size": 1351,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_posts/2014-12-22-a-combination-of-cool-grunt-tasks.md",
+			"settings":
+			{
+				"buffer_size": 1438,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "_posts/2014-12-23-5s--grails-custom-domain-validation-rules-in-controller-unit-tests.md",
+			"settings":
+			{
+				"buffer_size": 1982,
 				"line_ending": "Unix"
 			}
 		},
@@ -91,11 +126,15 @@
 				"Project: Close"
 			],
 			[
-				"post",
+				"new",
 				"Jekyll: New post"
 			],
 			[
-				"new",
+				"new post",
+				"Jekyll: New post"
+			],
+			[
+				"post",
 				"Jekyll: New post"
 			],
 			[
@@ -183,7 +222,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 444.0
+		"width": 443.0
 	},
 	"console":
 	{
@@ -200,6 +239,7 @@
 	},
 	"file_history":
 	[
+		"/Users/mduboucheron/Documents/eisti/animation_reunion/20140113_presentation_choixsujet.md",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/vendor/css/material.css",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_site/public/css/aliconnors.min.css",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-16-introducing-five-seconds.md",
@@ -293,16 +333,39 @@
 	"groups":
 	[
 		{
-			"sheets":
-			[
-			]
-		},
-		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "Gruntfile.coffee",
+					"settings":
+					{
+						"buffer_size": 3383,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2930,
+								2930
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1615.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
 					"file": "_posts/2014-12-16-5s--mocking-grails-listparams-using-metaclass.md",
 					"settings":
 					{
@@ -313,8 +376,8 @@
 						"selection":
 						[
 							[
-								311,
-								311
+								260,
+								260
 							]
 						],
 						"settings":
@@ -328,35 +391,123 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "Gruntfile.coffee",
+					"buffer": 2,
+					"file": "_posts/2014-12-15-integration-testing-in-grails--redirection.md",
 					"settings":
 					{
-						"buffer_size": 3326,
+						"buffer_size": 811,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1905,
-								1955
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Jekyll/Syntaxes/Markdown (Jekyll).tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 44.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
+					"file": "_includes/head.html",
+					"settings":
+					{
+						"buffer_size": 1351,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								898,
+								916
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Jekyll/Syntaxes/HTML (Jekyll).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 70.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"file": "_posts/2014-12-22-a-combination-of-cool-grunt-tasks.md",
+					"settings":
+					{
+						"buffer_size": 1438,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								116,
+								116
+							]
+						],
+						"settings":
+						{
+							"syntax": "/Users/mduboucheron/Library/Application Support/Sublime Text 2/Packages/Jekyll/Syntaxes/Markdown (Jekyll).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "_posts/2014-12-23-5s--grails-custom-domain-validation-rules-in-controller-unit-tests.md",
+					"settings":
+					{
+						"buffer_size": 1982,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								94,
+								94
+							]
+						],
+						"settings":
+						{
+							"syntax": "/Users/mduboucheron/Library/Application Support/Sublime Text 2/Packages/Jekyll/Syntaxes/Markdown (Jekyll).tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
 					"file": "index.html",
 					"settings":
 					{
@@ -384,7 +535,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 7,
 					"file": "public/css/aliconnors.css",
 					"settings":
 					{
@@ -410,7 +561,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 8,
 					"file": "vendor/css/bootstrap.css",
 					"settings":
 					{
