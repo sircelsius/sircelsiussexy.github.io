@@ -12,7 +12,7 @@ description: "Adding cssmin, htmlmin and uncss to my Jekyll website"
 
 ## The old, slow, unoptimized workflow
 
-Maybe you remember back in the days - I know, that was in late october, so it wasn't a long ago - I wrote an article explaining how to use Front Matter to merge the lanyon CSS files with your own. That was, as I said earlier, a workaround that wasn't very optimal. It did lower the number of requests to get the stylesheets, but it didn't minimize them or remove any unused rules.
+Maybe you remember back in the days - I know, that was in late october, so it wasn't long ago - I wrote an article explaining how to use Front Matter to merge the lanyon CSS files with your own. That was, as I said earlier, a workaround that wasn't very optimal. It did lower the number of requests to get the stylesheets, but it didn't minimize them or remove any unused rules.
 
 At the time the building workflow was the following:
 

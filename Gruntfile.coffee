@@ -104,8 +104,8 @@ module.exports = (grunt) ->
           "clean"
           "copy"
           "cssmin:combine"
-          "uncss"
-          "cssmin:postuncss"
+          # "uncss"
+          # "cssmin:postuncss"
           "exec:jekyll"
           "htmlmin"
         ]
@@ -134,8 +134,8 @@ module.exports = (grunt) ->
     "exec:jekyll"
     "copy"
     "cssmin:combine"
-    "uncss"
-    "cssmin:postuncss"
+    # "uncss"
+    # "cssmin:postuncss"
     "htmlmin"
   ]
 
