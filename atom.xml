@@ -4,13 +4,163 @@
  <title>Ali Connors</title>
  <link href="http://aliconnors.me/atom.xml" rel="self"/>
  <link href="http://aliconnors.me/"/>
- <updated>2015-01-29T10:55:15+01:00</updated>
+ <updated>2015-08-21T18:04:21+02:00</updated>
  <id>http://aliconnors.me</id>
  <author>
    <name>Marc Bramaud du Boucheron</name>
    <email>m.duboucheron@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>UK Police Project - Technologies</title>
+   <link href="http://aliconnors.me/projects/uk_police/2015/08/21/uk-police-project--technologies/"/>
+   <updated>2015-08-21T00:00:00+02:00</updated>
+   <id>http://aliconnors.me/projects/uk_police/2015/08/21/uk-police-project--technologies</id>
+   <content type="html">&lt;p&gt;&lt;strong&gt;All posts regarding the UK Police project can be found &lt;a href=&quot;/projects/uk_police&quot;&gt;here&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p class=&quot;message&quot;&gt;I just started working on a new project centered around the UK Police open data. This post details what technologies and libraries / frameworks I will use for this project.&lt;/p&gt;
+
+&lt;p&gt;The stack I will use for this is commonly referred to as the MEAN stack as it is centered around mongoDB, ExpressJS, Angular and NodeJS.&lt;/p&gt;
+
+&lt;h2&gt;Backend / API&lt;/h2&gt;
+
+&lt;p&gt;The backend and API parts of the application will be a &lt;a href=&quot;&quot;&gt;&lt;code&gt;NodeJS&lt;/code&gt;&lt;/a&gt; application that speaks to two persistence clients:
+  * A &lt;a href=&quot;&quot;&gt;&lt;code&gt;mongoDB&lt;/code&gt;&lt;/a&gt; database.
+  * An &lt;a href=&quot;&quot;&gt;&lt;code&gt;Elasticsearch&lt;/code&gt;&lt;/a&gt; cluster.&lt;/p&gt;
+
+&lt;p&gt;As the API will never write with these clients, connections to them should be read-only.&lt;/p&gt;
+
+&lt;h2&gt;Frontend&lt;/h2&gt;
+
+&lt;p&gt;The frontend will be a simple &lt;a href=&quot;&quot;&gt;&lt;code&gt;Angular&lt;/code&gt;&lt;/a&gt; application that calls the API.&lt;/p&gt;
+
+&lt;p&gt;Amongst other libraries, it will use:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;code&gt;leaflet&lt;/code&gt;&lt;/a&gt; for maps.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;CSV Uploader&lt;/h2&gt;
+
+&lt;p&gt;The initial CSV files downloaded from the &lt;a href=&quot;&quot;&gt;UP Police&lt;/a&gt; website will need to be parsed and inserted in the persistence clients.&lt;/p&gt;
+
+&lt;p&gt;This CSV uploader module will be a &lt;a href=&quot;&quot;&gt;&lt;code&gt;NodeJS&lt;/code&gt;&lt;/a&gt; script with the following dependencies:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;code&gt;fast-csv&lt;/code&gt;&lt;/a&gt; to read the files.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;code&gt;q&lt;/code&gt;&lt;/a&gt; to process them asynchronously.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;code&gt;mongoose&lt;/code&gt;&lt;/a&gt; to insert in mongoDB.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;&quot;&gt;&lt;code&gt;elasticsearch&lt;/code&gt;&lt;/a&gt; to insert in Elasticsearch.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Others&lt;/h2&gt;
+
+&lt;h3&gt;Testing&lt;/h3&gt;
+
+&lt;p&gt;Unit test of JS files will be done with &lt;a href=&quot;&quot;&gt;&lt;code&gt;Jasmine&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;End-to-end testing will be done with &lt;a href=&quot;&quot;&gt;&lt;code&gt;CasperJS&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Logging&lt;/h3&gt;
+
+&lt;p&gt;All backend projects (at the moment this is written, that is the API and the CSV uploader) will log their output to files using &lt;a href=&quot;&quot;&gt;&lt;code&gt;winston&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>UK Police Project - Uploader v0.0.1</title>
+   <link href="http://aliconnors.me/projects/uk_police/2015/08/21/uk-police-project--starting-the-uploader/"/>
+   <updated>2015-08-21T00:00:00+02:00</updated>
+   <id>http://aliconnors.me/projects/uk_police/2015/08/21/uk-police-project--starting-the-uploader</id>
+   <content type="html">&lt;p&gt;&lt;strong&gt;All posts regarding the UK Police project can be found &lt;a href=&quot;/projects/uk_police&quot;&gt;here&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p class=&quot;message&quot;&gt;The CSV uploader submodule of the UK Police Project is a NodeJS script that reads a bunch of files, processes their content and inserts it into a mongoDB database and an Elasticsearch index.&lt;/p&gt;
+
+&lt;h2&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;The code is available &lt;a href=&quot;github.com/sircelsiussexy/uk-police-csv-elasticsearch-uploader&quot;&gt;on github&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This script&amp;#39;s entry point is the &lt;code&gt;src/es-uploader.js&lt;/code&gt; file.&lt;/p&gt;
+
+&lt;p&gt;This script calls the following modules:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;src/utils/reader.js&lt;/code&gt;: reads CSV files and outputs their content to a list.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/utils/processor.js&lt;/code&gt;: process raw entries into objects that match the required data model.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;src/utils/writer.js&lt;/code&gt;: insert objects into an Elasticsearch index.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;Details&lt;/h2&gt;
+
+&lt;h3&gt;Command line arguments&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;These arguments are parsed using &lt;a href=&quot;&quot;&gt;&lt;code&gt;commander&lt;/code&gt;&lt;/a&gt;.&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;--host&lt;/code&gt; (or &lt;code&gt;-h&lt;/code&gt;) the host of the Elasticsearch index, defaults to &lt;code&gt;localhost&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--port&lt;/code&gt; (or &lt;code&gt;-p&lt;/code&gt;) the port of the index, defaults to &lt;code&gt;9200&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--filename&lt;/code&gt; (or &lt;code&gt;-f&lt;/code&gt;) the path to the file to process. If no filename is provided, the script will batch process all files within the &lt;code&gt;resources&lt;/code&gt;directory.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;[WIP] Batch processing&lt;/h3&gt;
+
+&lt;p&gt;We want to be able to batch upload files. As of version &lt;code&gt;v0.0.1&lt;/code&gt;, this batch upload will cause Node to run out of memory when trying to upload too many files.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>UK Police Project - Intro</title>
+   <link href="http://aliconnors.me/projects/uk_police/2015/08/21/uk-police-project--intro/"/>
+   <updated>2015-08-21T00:00:00+02:00</updated>
+   <id>http://aliconnors.me/projects/uk_police/2015/08/21/uk-police-project--intro</id>
+   <content type="html">&lt;p&gt;&lt;strong&gt;All posts regarding the UK Police project can be found &lt;a href=&quot;/projects/uk_police&quot;&gt;here&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p class=&quot;message&quot;&gt;I recently discovered that the UK Police had an open data project in which they upload a bunch of information on recorded crime activity. I decided to write an application to have fun with this data.&lt;/p&gt;
+
+&lt;h2&gt;General idea&lt;/h2&gt;
+
+&lt;p&gt;While the provided dataset is quite large, it comes in a bunch of &lt;code&gt;csv&lt;/code&gt; files that in my opinion lack customization. At first I wanted to provide an API that enabled people to download custom files.&lt;/p&gt;
+
+&lt;p&gt;For example, I wanted to provide the ability to download a file with information about all the theft related data in London and Manchester between 2014-09 and 2015-02, in JSON.&lt;/p&gt;
+
+&lt;p&gt;The idea evolved slightly after that, as I added a bunch of possibilities including supervised learning on the crime outcome, a map and timeline display of crime history and other cool things.&lt;/p&gt;
+
+&lt;h2&gt;Final requirements&lt;/h2&gt;
+
+&lt;h3&gt;API&lt;/h3&gt;
+
+&lt;p&gt;Provide an open API with the following endpoints:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;/data&lt;/code&gt;: enable download of custom files via POST request parameters within the following:
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;file_format&lt;/code&gt;: &lt;strong&gt;required&lt;/strong&gt; either &lt;code&gt;csv&lt;/code&gt; or &lt;code&gt;json&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;start_date&lt;/code&gt;: &lt;strong&gt;required&lt;/strong&gt; in the form &lt;code&gt;MM-YYYY&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;end_date&lt;/code&gt;: in the form &lt;code&gt;MM-YYYY&lt;/code&gt; if &lt;code&gt;null&lt;/code&gt; return data only for the start month.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;location&lt;/code&gt;: a JSON object in the form &lt;code&gt;{ lat: 3.11, lon: 3.11}&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;range&lt;/code&gt;: &lt;strong&gt;required if &lt;code&gt;location&lt;/code&gt; isn&amp;#39;t null&lt;/strong&gt; the distance in &lt;code&gt;km&lt;/code&gt; around the given center to query for.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;location_name&lt;/code&gt;: the name of a given police center.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;crime_type&lt;/code&gt;: the crime type to restrict to.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;outcome&lt;/code&gt;: the outcome to restrict to.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/predict&lt;/code&gt;: given a number of parameters such as date, location, crime type, etc, run a machine learning algorithm to predict a value based on the existing ones.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;Frontend&lt;/h3&gt;
+
+&lt;p&gt;Create the following views:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;map&lt;/code&gt;: a map showing crimes. This map should be customizable on all the crime parameters.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;timeline&lt;/code&gt;: a timeline showing crime information &amp;amp; statistics per month. This timeline should be customizable as well.&lt;/li&gt;
+&lt;li&gt;Secondary views such as API documentation, project presentation and so on.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I started this project a few days ago so it is barely starting, I will try to write detailed posts about the different things I do as I work on it.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>5s - Grails: Custom Domain validation rules in Controller Unit Tests</title>

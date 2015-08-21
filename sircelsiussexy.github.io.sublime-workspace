@@ -40,37 +40,10 @@
 	"buffers":
 	[
 		{
-			"contents": "#global module:false\n\n\"use strict\"\n\nmodule.exports = (grunt) ->\n  grunt.loadNpmTasks \"grunt-bower-task\"\n  grunt.loadNpmTasks \"grunt-contrib-connect\"\n  grunt.loadNpmTasks \"grunt-contrib-copy\"\n  grunt.loadNpmTasks \"grunt-contrib-watch\"\n  grunt.loadNpmTasks \"grunt-exec\"\n  grunt.loadNpmTasks \"grunt-contrib-cssmin\"\n  grunt.loadNpmTasks \"grunt-contrib-clean\"\n  grunt.loadNpmTasks \"grunt-contrib-htmlmin\"\n  grunt.loadNpmTasks \"grunt-uncss\"\n\n  grunt.initConfig\n\n    copy:\n      jquery:\n        files: [{\n          expand: true\n          cwd: \"bower_components/jquery/dist/\"\n          src: \"jquery.min.js\"\n          dest: \"vendor/js/\"\n        }]\n      bootstrapmaterial:\n        files: [{\n          expand: true\n          cwd: \"bower_components/bootstrap-material-design/dist/css/\"\n          src: \"material.css\"\n          dest: \"vendor/css/\"\n        },\n        {\n          expand: true\n          cwd: \"bower_components/bootstrap-material-design/dist/css/\"\n          src: \"material.css.map\"\n          dest: \"vendor/css/\"\n        },\n        {\n          expand: true\n          cwd: \"bower_components/bootstrap-material-design/dist/js/\"\n          src: \"material.js\"\n          dest: \"vendor/js/\"\n        }]\n      bootstrap:\n        files: [{\n          expand: true\n          cwd: \"bower_components/bootstrap/dist/css/\"\n          src: \"bootstrap.css\"\n          dest: \"vendor/css\"\n        }]\n      d3:\n        files: [{\n          expand: true\n          cwd: \"bower_components/d3/\"\n          src: \"d3.min.js\"\n          dest: \"vendor/js\"\n        }]\n\n    cssmin:\n      combine:\n        files:\n          \"_site/public/css/aliconnors.min.css\" : [\n            \"public/css/lanyon.css\",\n            \"public/css/poole.css\",\n            \"vendor/bootstrap.css\"\n            \"vendor/css/material.css\",\n            \"vendor/css/material.css.map\",\n            \"public/css/aliconnors.css\"\n          ]\n      postuncss:\n        files:\n          \"_site/public/css/aliconnors.min.css\" : [\n            \"_site/public/css/aliconnors.uncss.css\"\n          ]\n\n    clean: [\"public/css/aliconnors.min.css\", \"vendor/css/*.css\"]\n\n    uncss:\n      dist:\n        files:\n          \"_site/public/css/aliconnors.uncss.css\" : [\"_site/*.html\"]\n\n    exec:\n      jekyll:\n        cmd: \"jekyll build --trace\"\n\n    watch:\n      options:\n        livereload: true\n      source:\n        files: [\n          \"_drafts/**/*\"\n          \"_includes/**/*\"\n          \"_layouts/**/*\"\n          \"_posts/**/*\"\n          \"public/css/**/*\"\n          \"public/js/**/*\"\n          \"_config.yml\"\n          \"*.html\"\n          \"*.md\"\n        ]\n        tasks: [\n          \"clean\"\n          \"copy\"\n          \"cssmin:combine\"\n          \"uncss\"\n          \"cssmin:postuncss\"\n          \"exec:jekyll\"\n          \"htmlmin\"\n        ]\n\n    connect:\n      server:\n        options:\n          port: 4000\n          base: '_site'\n          livereload: true\n\n    htmlmin:\n      dist:\n        options:\n          removeComments: true,\n          collapseWhitespace: true\n        files: [{\n          expand: true,\n          cwd: \"_site\",\n          src: \"**/*.html\",\n          dest: \"_site\"\n        }]\n\n  grunt.registerTask \"build\", [\n    \"clean\"\n    \"exec:jekyll\"\n    \"copy\"\n    \"cssmin:combine\"\n    # \"uncss\"\n    # \"cssmin:postuncss\"\n    \"htmlmin\"\n  ]\n\n  grunt.registerTask \"serve\", [\n    \"build\"\n    \"connect:server\"\n    \"watch\"\n  ]\n\n  grunt.registerTask \"default\", [\n    \"serve\"\n  ]",
-			"file": "Gruntfile.coffee",
-			"file_size": 3383,
-			"file_write_time": 1419346156000000,
+			"file": "_posts/2015-04-20-setting-up-a-fedora-workstation-development-environment.md",
 			"settings":
 			{
-				"buffer_size": 3383,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "_posts/2014-12-16-5s--mocking-grails-listparams-using-metaclass.md",
-			"settings":
-			{
-				"buffer_size": 519,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "_posts/2014-12-15-integration-testing-in-grails--redirection.md",
-			"settings":
-			{
-				"buffer_size": 811,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "_includes/head.html",
-			"settings":
-			{
-				"buffer_size": 1351,
+				"buffer_size": 2978,
 				"line_ending": "Unix"
 			}
 		},
@@ -78,56 +51,57 @@
 			"file": "_posts/2014-12-22-a-combination-of-cool-grunt-tasks.md",
 			"settings":
 			{
-				"buffer_size": 1438,
+				"buffer_size": 1434,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "_posts/2014-12-23-5s--grails-custom-domain-validation-rules-in-controller-unit-tests.md",
+			"contents": "Hi,\n\n(es tut mir leid dass diese Nachricht einen Muster ist, jedoch ist meine Anfrage ziemlich dringend)\n\nIch bin Marc, 22 Jahre alt, komme aus Frankreich, und habe letzte Woche ein Praktikum in Berlin angefangen. Ich suche deswegen ein gemütliches Zimmer in einer WG für die nächsten 4 Monate .. aber da ich jetzt gerade auf der Coutch einer Freundin wohne, ist auch eine kurz befristeste Untermiete ok.\n\nEin paar Wörter über mich: ich habe Informatik studiert, spreche gut englisch und will jetzt mein Deutsch verbessern. Ich werde wahrscheinlich ein bischen mehr als 20 Stunden pro Woche arbeiten, aber ich freue mich schon auf entspannte Mitbewohner mit denen ich das eine oder andere Mal ein Bierchen trinken kann, kochen und andere Dinge unternehmen kann.\n\nIch bin erreichbar:\n- per mail: m.duboucheron@gmail.com\n- per facebook: Marc du Bouch\n- per whatsapp (französische Nummer, der deutschen kommt bald) : 00 33 6 62 52 64 41\n\n\nIch freue mich schon, euch kennen zu lernen",
 			"settings":
 			{
-				"buffer_size": 1982,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 1041,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/css/aliconnors.css",
-			"settings":
-			{
-				"buffer_size": 428,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "vendor/css/bootstrap.css",
-			"settings":
-			{
-				"buffer_size": 137067,
-				"line_ending": "Unix"
+				"buffer_size": 979,
+				"line_ending": "Unix",
+				"name": "Hi,"
 			}
 		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 87.0,
+		"height": 347.0,
 		"selected_items":
 		[
 			[
-				"close",
+				"clos",
 				"Project: Close"
+			],
+			[
+				"new ",
+				"Jekyll: New post"
+			],
+			[
+				"pro",
+				"Project: Close"
+			],
+			[
+				"prefere",
+				"Preferences: Settings - User"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
 			],
 			[
 				"new",
 				"Jekyll: New post"
+			],
+			[
+				"project",
+				"Project: Close"
+			],
+			[
+				"close",
+				"Project: Close"
 			],
 			[
 				"new post",
@@ -144,10 +118,6 @@
 			[
 				"set html",
 				"Set Syntax: HTML"
-			],
-			[
-				"new ",
-				"Jekyll: New post"
 			],
 			[
 				"add f",
@@ -198,10 +168,6 @@
 				"Project: Save As"
 			],
 			[
-				"clos",
-				"Project: Close"
-			],
-			[
 				"java",
 				"Set Syntax: JavaScript"
 			],
@@ -214,15 +180,11 @@
 				"Set Syntax: Markdown Extended"
 			],
 			[
-				"install",
-				"Package Control: Install Package"
-			],
-			[
 				"instal",
 				"Package Control: Install Package"
 			]
 		],
-		"width": 443.0
+		"width": 444.0
 	},
 	"console":
 	{
@@ -239,18 +201,28 @@
 	},
 	"file_history":
 	[
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/Gruntfile.coffee",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2015-02-19-adding-filterbuilder-support-to-the-elasticsearch-grails-plugin.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_site/2015/04/20/setting-up-a-fedora-workstation-development-environment/index.html",
+		"/Users/mduboucheron/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-16-5s--mocking-grails-listparams-using-metaclass.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-15-integration-testing-in-grails--redirection.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_includes/head.html",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_layouts/default.html",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-23-5s--grails-custom-domain-validation-rules-in-controller-unit-tests.md",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/index.html",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/public/css/aliconnors.css",
+		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/vendor/css/bootstrap.css",
+		"/Users/mduboucheron/Documents/travail/projects/gsi_s4/README.md",
 		"/Users/mduboucheron/Documents/eisti/animation_reunion/20140113_presentation_choixsujet.md",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/vendor/css/material.css",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_site/public/css/aliconnors.min.css",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-16-introducing-five-seconds.md",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/bower_components/bootstrap-material-design/dist/css/material.css",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_site/index.html",
-		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_includes/head.html",
-		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-15-integration-testing-in-grails--redirection.md",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-15-grunt-and-bower-ftw.md",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-18-5s--correct-way-to-test-for-validation-errors-in-grails-unit-tests.md",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-10-mac-os-x-case-senitivity-and-git.md",
-		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/index.html",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/fiveseconds.html",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_layouts/post.html",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-11-integration-testing-in-grails-a-few-notes.md",
@@ -261,15 +233,11 @@
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_config.yml",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-16-unit-test-in-grails--a-few-notes.md",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-17-how-the-building-of-this-website-has-evolved-recently.md",
-		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/Gruntfile.coffee",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/public/css/aliconnors.min.css",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/package.json",
-		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/public/css/aliconnors.css",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/public/css/aliconnors.release.css",
-		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_posts/2014-12-16-5s--mocking-grails-listparams-using-metaclass.md",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_includes/sidebar.html",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/fiveseconds.md",
-		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_layouts/default.html",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/bower.json",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/public/js/bowergrunt.js",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_layouts/page.html",
@@ -278,8 +246,7 @@
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/.gitignore",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_drafts/2014-12-11-integration-testing-in-grails-a-few-notes.md",
 		"/Users/mduboucheron/Documents/travail/projects/sircelsiussexy.github.io/_drafts/2014-12-10-mac-os-x-case-senitivity-and-git.md",
-		"/Users/mduboucheron/Documents/travail/kazaden-doc/kazaden_doc_ip_20141208.md",
-		"/Users/mduboucheron/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings"
+		"/Users/mduboucheron/Documents/travail/kazaden-doc/kazaden_doc_ip_20141208.md"
 	],
 	"find":
 	{
@@ -299,6 +266,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			" ",
 			"\n\"",
 			"font",
 			"38re",
@@ -321,6 +289,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			" ",
 			"<span style=\"color: #1d1075;\">Mantis",
 			"IE"
 		],
@@ -338,108 +307,26 @@
 			[
 				{
 					"buffer": 0,
-					"file": "Gruntfile.coffee",
+					"file": "_posts/2015-04-20-setting-up-a-fedora-workstation-development-environment.md",
 					"settings":
 					{
-						"buffer_size": 3383,
+						"buffer_size": 2978,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2930,
-								2930
+								16,
+								16
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CoffeeScript/CoffeeScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1615.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "_posts/2014-12-16-5s--mocking-grails-listparams-using-metaclass.md",
-					"settings":
-					{
-						"buffer_size": 519,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								260,
-								260
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Jekyll/Syntaxes/Markdown (Jekyll).tmLanguage"
+							"syntax": "/Users/mduboucheron/Library/Application Support/Sublime Text 2/Packages/Jekyll/Syntaxes/Markdown (Jekyll).tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "_posts/2014-12-15-integration-testing-in-grails--redirection.md",
-					"settings":
-					{
-						"buffer_size": 811,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Jekyll/Syntaxes/Markdown (Jekyll).tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "_includes/head.html",
-					"settings":
-					{
-						"buffer_size": 1351,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								898,
-								916
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Jekyll/Syntaxes/HTML (Jekyll).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 70.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -447,15 +334,15 @@
 			]
 		},
 		{
-			"selected": 4,
+			"selected": 1,
 			"sheets":
 			[
 				{
-					"buffer": 4,
+					"buffer": 1,
 					"file": "_posts/2014-12-22-a-combination-of-cool-grunt-tasks.md",
 					"settings":
 					{
-						"buffer_size": 1438,
+						"buffer_size": 1434,
 						"regions":
 						{
 						},
@@ -479,108 +366,24 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "_posts/2014-12-23-5s--grails-custom-domain-validation-rules-in-controller-unit-tests.md",
+					"buffer": 2,
 					"settings":
 					{
-						"buffer_size": 1982,
+						"buffer_size": 979,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								94,
-								94
+								489,
+								489
 							]
 						],
 						"settings":
 						{
-							"syntax": "/Users/mduboucheron/Library/Application Support/Sublime Text 2/Packages/Jekyll/Syntaxes/Markdown (Jekyll).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "index.html",
-					"settings":
-					{
-						"buffer_size": 1041,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								35,
-								35
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Jekyll/Syntaxes/HTML (Jekyll).tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "public/css/aliconnors.css",
-					"settings":
-					{
-						"buffer_size": 428,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								129,
-								129
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "vendor/css/bootstrap.css",
-					"settings":
-					{
-						"buffer_size": 137067,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								240,
-								244
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"auto_name": "Hi,",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
