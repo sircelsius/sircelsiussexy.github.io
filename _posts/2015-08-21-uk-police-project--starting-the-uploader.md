@@ -16,7 +16,7 @@ tags: [Code, node, nodejs, mongodb, elasticsearch, express]
 
 The code is available [on github](github.com/sircelsiussexy/uk-police-csv-elasticsearch-uploader).
 
-This script's entry point is the `src/es-uploader.js` file.
+This script's entry point is the `src/uploader.js` file.
 
 This script calls the following modules:
 
