@@ -2,7 +2,7 @@
 layout: post
 title: UK Police Project - Technologies
 published: true
-date: '2015-08-21'
+date: '2015-08-20'
 description: 'Starting a NodeJS API + Angular frontend project' 
 categories: [projects, uk_police]
 tags: [Code, node, nodejs, mongodb, elasticsearch, express]

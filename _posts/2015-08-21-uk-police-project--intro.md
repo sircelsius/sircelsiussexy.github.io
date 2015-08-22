@@ -2,7 +2,7 @@
 layout: post
 title: UK Police Project - Intro
 published: true
-date: '2015-08-21'
+date: '2015-08-19'
 description: 'Starting a NodeJS API + Angular frontend project' 
 categories: [projects, uk_police]
 tags: [Code, node, nodejs, csv, data]
